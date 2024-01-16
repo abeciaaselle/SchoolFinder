@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, Linking, StyleSheet, ScrollView } 
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const SchoolDetails = () => {
+const LiceoPage = () => {
   const [showAbout, setShowAbout] = useState(true);
   const [showCourses, setShowCourses] = useState(false);
   const [showContact, setShowContact] = useState(false);
@@ -20,11 +20,6 @@ const SchoolDetails = () => {
         setShowCourses(true);
         setShowContact(false);
         break;
-      case 'whyUs':
-        setShowAbout(false);
-        setShowCourses(false);
-        setShowContact(false);
-        break;
       case 'contact':
         setShowAbout(false);
         setShowCourses(false);
@@ -35,29 +30,27 @@ const SchoolDetails = () => {
     }
   };
 
-  const handlePhonePress = () => {
-    Linking.openURL('tel:0917-864-8928');
-  };
   const handleHotlinePress = () => {
-    Linking.openURL('tel: (088) 864-8865');
+    Linking.openURL('tel:(088) 858-4093');
+    Linking.openURL('tel:(63)(88) 858-4095');
   };
 
   const handleEmailPress = () => {
-    Linking.openURL('mailto:cu@g.cu.edu.ph');
+    Linking.openURL('mailto:inquiries@liceo.edu.ph');
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Capitol University</Text>
+      <Text style={styles.title}>Liceo de Cagayan University</Text>
 
       {/* Address */}
-      <Text style={styles.address}>Corrales Avenue, Cagayan de Oro City</Text>
+      <Text style={styles.address}>Rodolfo N. Pelaez Blvd., Cagayan de Oro City</Text>
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
-      <Image source={require('../../../assets/images/CU/cu3.jpg')} style={styles.logo} />
-      <Image source={require('../../../assets/images/CU/CUpic1.jpg')} style={styles.logo} />
-      <Image source={require('../../../assets/images/CU/CUpic2.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/Liceo/liceo4.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/Liceo/liceo1.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/Liceo/liceo2.jpg')} style={styles.logo} />
 
       </Swiper>
       {/* Panel */}
@@ -77,63 +70,68 @@ const SchoolDetails = () => {
       {showAbout && (
   <>
     <View style={styles.backgroundContainer}>
-      <Text style={styles.background}>Capitol University formerly Cagayan Capitol College was established in 1971 as a non – sectarian, co – educational private academic institution, duly registered with the Securities and Exchange Commission as a stock corporation and operates with the authority of the Department of Education for its primary and secondary programs and the Commission on Higher Education for its tertiary, graduate and postgraduate programs.</Text>
+      <Text style={styles.background}>Founded in 1955 by Atty. Rodolfo N. Pelaez of Cagayan de Oro City and his wife Elsa Pelaez Pelaez of Cebu City, the University was established with the primary mission to impart professional education to the youth of Northern Mindanao especially those who are deserving, but are financially-challenged. Envisioned to make relevant and quality education accessible to the youth, this higher institution of learning was founded as a catalyst in their total human formation anchored on universal moral values and Christian precepts.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}>Capitol University is committed to develop the youth into “Total Persons,” mature and responsible individuals who are intellectually, professionally, and technically competent, imbued with desirable attitudes, and steeped in moral and spiritual values, who will serve as catalyst for social transformation.</Text>
+      <Text style={styles.mission}>The University is committed to deliver quality instruction, research, and service learning for global integration.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.mission}>Accessible excellent education for enhanced quality of life.</Text>
+      <Text style={styles.mission}>A leading Filipino University preparing responsible global leaders, anchored on Total Human Formation, for God, Country, and Humanity.</Text>
     </View>
   </>
 )}
       {showCourses && (
         <View style={styles.coursesContainer}>
+          <Text style={styles.categoryCourse}>Fine Arts</Text>
+          <Text style={styles.categoryItem}>Bachelor of Arts in Communication</Text>
+          <Text style={styles.categoryItem}>Bachelor of Arts in Economics</Text>
+          <Text style={styles.categoryItem}>Bachelor of Arts in English Literature</Text>
+          <Text style={styles.categoryItem}>Bachelor of Arts in International Studies</Text>
+          <Text style={styles.categoryItem}>Bachelor of Arts in Political Science</Text>
+          <Text style={styles.categoryItem}>Bachelor of Library and Information Science</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Biology</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Psychology</Text>
           <Text style={styles.categoryCourse}>Business and Management</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Accountancy</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Financial Management</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Human Resource Management</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Marketing Management</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Operation Management</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Hospitality Management</Text>
           <Text style={styles.categoryItem}>Bachelor of Science in Management Accounting</Text>
-          <Text style={styles.categoryCourse}>Information Technology</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Computer Science</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Information Technology</Text>
-          <Text style={styles.categoryCourse}>Law and Legal Studies</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Criminology</Text>
-          <Text style={styles.categoryCourse}>Education</Text>
-          <Text style={styles.categoryItem}>Bachelor of Elementary Education</Text>
-          <Text style={styles.categoryItem}>Bachelor of Secondary Education</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Real Estate Management</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Tourism Management</Text>
           <Text style={styles.categoryCourse}>Engineering and Technology</Text>
           <Text style={styles.categoryItem}>Bachelor of Science in Civil Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Electronics & Communications Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Mechanical Engineering</Text>
+          <Text style={styles.categoryCourse}>Information Technology</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Information Technology</Text>
           <Text style={styles.categoryCourse}>Health and Medicine</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Medical Technology/Medical Laboratory Science</Text>
           <Text style={styles.categoryItem}>Bachelor of Science in Nursing</Text>
-          <Text style={styles.categoryCourse}>Maritime</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Transportation</Text>
-
+          <Text style={styles.categoryItem}>Bachelor of Science in Pharmacy</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Radiologic Technology</Text>
         </View>
       )}
 
       {showContact && (
         <View style={styles.categoryContainer}>
-          <TouchableOpacity onPress={handlePhonePress}>
+          <TouchableOpacity onPress={handleHotlinePress}>
             <View style={styles.contactItem}>
               <Icon name="phone" size={20} color="black" />
-              <Text style={styles.contactText}> 0917-864-8928</Text>
+              <Text style={styles.contactText}>(088) 858-4093</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleHotlinePress}>
             <View style={styles.contactItem}>
               <Icon name="phone" size={20} color="black" />
-              <Text style={styles.contactText}>(088) 864-8865</Text>
+              <Text style={styles.contactText}>(63)(88) 858-4095</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleEmailPress}>
             <View style={styles.contactItem}>
               <Icon name="envelope" size={20} color="black" />
-              <Text style={styles.contactText}>cu@g.cu.edu.ph</Text>
+              <Text style={styles.contactText}>inquiries@liceo.edu.ph</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -142,7 +140,7 @@ const SchoolDetails = () => {
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
-  onPress={() => Linking.openURL('https://www.cu.edu.ph/')}
+  onPress={() => Linking.openURL(' https://www.liceo.edu.ph/')}
 >
   <Text style={styles.linkButtonText}>
     Need more information? Click here.
@@ -320,4 +318,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SchoolDetails;
+export default LiceoPage;

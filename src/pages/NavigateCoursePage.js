@@ -71,14 +71,6 @@ const collegesAndCourses = {
     ],
     'Information Technology': ['Bachelor of Science in Information Technology'],
   },
-  'Informatics College Cagayan de Oro': {
-    'Information Technology': [
-      'Bachelor of Science in Information Technology',
-      'Bachelor of Science in Computer Science',
-      'Bachelor of Science in Information Systems',
-      'Bachelor of Science in Entrepreneurship',
-    ],
-  },
   'Golden Heritage Polytechnic College': {
     'Education': [
       'Bachelor of Elementary Education',
@@ -87,6 +79,14 @@ const collegesAndCourses = {
     'Business and Management': [
       'Bachelor of Science in Business Administration',
       'Bachelor of Science in Office Administration',
+    ],
+  },
+   'Informatics College Cagayan de Oro': {
+    'Information Technology': [
+      'Bachelor of Science in Information Technology',
+      'Bachelor of Science in Computer Science',
+      'Bachelor of Science in Information Systems',
+      'Bachelor of Science in Entrepreneurship',
     ],
   },
   'Liceo De Cagayan University': {

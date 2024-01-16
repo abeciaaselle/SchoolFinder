@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const SchoolDetails = () => {
   const [showAbout, setShowAbout] = useState(true);
   const [showCourses, setShowCourses] = useState(false);
+  const [showWhyUs, setShowWhyUs] = useState(false);
   const [showContact, setShowContact] = useState(false);
 
   const handleToggleSection = (section) => {
@@ -13,21 +14,25 @@ const SchoolDetails = () => {
       case 'about':
         setShowAbout(true);
         setShowCourses(false);
+        setShowWhyUs(false);
         setShowContact(false);
         break;
       case 'courses':
         setShowAbout(false);
         setShowCourses(true);
+        setShowWhyUs(false);
         setShowContact(false);
         break;
       case 'whyUs':
         setShowAbout(false);
         setShowCourses(false);
+        setShowWhyUs(true);
         setShowContact(false);
         break;
       case 'contact':
         setShowAbout(false);
         setShowCourses(false);
+        setShowWhyUs(false);
         setShowContact(true);
         break;
       default:
@@ -36,28 +41,25 @@ const SchoolDetails = () => {
   };
 
   const handlePhonePress = () => {
-    Linking.openURL('tel:0917-864-8928');
-  };
-  const handleHotlinePress = () => {
-    Linking.openURL('tel: (088) 864-8865');
+    Linking.openURL('tel:+63 917 376 5105');
   };
 
   const handleEmailPress = () => {
-    Linking.openURL('mailto:cu@g.cu.edu.ph');
+    Linking.openURL('mailto:info.coc@phinmaed.com');
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Capitol University</Text>
+      <Text style={styles.title}>Cagayan de Oro College-PHINMA</Text>
 
       {/* Address */}
-      <Text style={styles.address}>Corrales Avenue, Cagayan de Oro City</Text>
+      <Text style={styles.address}>Max Suniel St., Carmen, Cagayan de Oro City</Text>
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
-      <Image source={require('../../../assets/images/CU/cu3.jpg')} style={styles.logo} />
-      <Image source={require('../../../assets/images/CU/CUpic1.jpg')} style={styles.logo} />
-      <Image source={require('../../../assets/images/CU/CUpic2.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/COC/coc4.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/COC/coc2.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/COC/coc3.jpg')} style={styles.logo} />
 
       </Swiper>
       {/* Panel */}
@@ -68,6 +70,9 @@ const SchoolDetails = () => {
         <TouchableOpacity onPress={() => handleToggleSection('courses')}>
           <Text style={[styles.panelItem, showCourses && styles.activePanel]}>Courses Offered</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleToggleSection('whyUs')}>
+          <Text style={[styles.panelItem, showWhyUs && styles.activePanel]}>Why Us?</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => handleToggleSection('contact')}>
           <Text style={[styles.panelItem, showContact && styles.activePanel]}>Contact Us</Text>
         </TouchableOpacity>
@@ -77,15 +82,11 @@ const SchoolDetails = () => {
       {showAbout && (
   <>
     <View style={styles.backgroundContainer}>
-      <Text style={styles.background}>Capitol University formerly Cagayan Capitol College was established in 1971 as a non – sectarian, co – educational private academic institution, duly registered with the Securities and Exchange Commission as a stock corporation and operates with the authority of the Department of Education for its primary and secondary programs and the Commission on Higher Education for its tertiary, graduate and postgraduate programs.</Text>
+      <Text style={styles.background}>For more than a decade, PHINMA built its reputation on transforming existing educational institutions to better serve Filipino students. PHINMA Education begins this process by strategically selecting a school from a key growth area and thoroughly transforming its academics, operations, and student community in order to ensure success for Filipino youth coming from low-income families.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}>Capitol University is committed to develop the youth into “Total Persons,” mature and responsible individuals who are intellectually, professionally, and technically competent, imbued with desirable attitudes, and steeped in moral and spiritual values, who will serve as catalyst for social transformation.</Text>
-    </View>
-    <View style={styles.backgroundContainer}>
-    <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.mission}>Accessible excellent education for enhanced quality of life.</Text>
+      <Text style={styles.mission}>To make lives better through education.</Text>
     </View>
   </>
 )}
@@ -93,26 +94,37 @@ const SchoolDetails = () => {
         <View style={styles.coursesContainer}>
           <Text style={styles.categoryCourse}>Business and Management</Text>
           <Text style={styles.categoryItem}>Bachelor of Science in Accountancy</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Management Accounting</Text>
-          <Text style={styles.categoryCourse}>Information Technology</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Computer Science</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Information Technology</Text>
-          <Text style={styles.categoryCourse}>Law and Legal Studies</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Criminology</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Hospitality Management</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Tourism Management</Text>
           <Text style={styles.categoryCourse}>Education</Text>
           <Text style={styles.categoryItem}>Bachelor of Elementary Education</Text>
           <Text style={styles.categoryItem}>Bachelor of Secondary Education</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Early Childhood Education</Text>
+          <Text style={styles.categoryCourse}>Law and Legal Studies</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Criminology</Text>
           <Text style={styles.categoryCourse}>Engineering and Technology</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Computer Engineering</Text>
           <Text style={styles.categoryItem}>Bachelor of Science in Civil Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Electronics & Communications Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Engineering</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Electrical Engineering</Text>
           <Text style={styles.categoryItem}>Bachelor of Science in Mechanical Engineering</Text>
+          <Text style={styles.categoryCourse}>Architecture</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Architecture</Text>
           <Text style={styles.categoryCourse}>Health and Medicine</Text>
           <Text style={styles.categoryItem}>Bachelor of Science in Nursing</Text>
-          <Text style={styles.categoryCourse}>Maritime</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Transportation</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Pharmacy</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Medical Technology</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Psychology</Text>
+          <Text style={styles.categoryCourse}>Information Technology</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Information Technology</Text>
 
+          
+
+        </View>
+      )}
+
+      {showWhyUs && (
+        <View style={styles.categoryContainer}>
+          <Text style={styles.categoryWhyUs}>As an innovative Philippine business institution, PHINMA believes that access to quality education is the solution to many of our country’s problems. While the enrollment rate in the Philippines has always been high, PHINMA discovered that most students do not finish tertiary education. Students were willing to learn but did not have the resources to stay in school.</Text>
         </View>
       )}
 
@@ -121,19 +133,13 @@ const SchoolDetails = () => {
           <TouchableOpacity onPress={handlePhonePress}>
             <View style={styles.contactItem}>
               <Icon name="phone" size={20} color="black" />
-              <Text style={styles.contactText}> 0917-864-8928</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleHotlinePress}>
-            <View style={styles.contactItem}>
-              <Icon name="phone" size={20} color="black" />
-              <Text style={styles.contactText}>(088) 864-8865</Text>
+              <Text style={styles.contactText}>+63 917 376 5105</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleEmailPress}>
             <View style={styles.contactItem}>
               <Icon name="envelope" size={20} color="black" />
-              <Text style={styles.contactText}>cu@g.cu.edu.ph</Text>
+              <Text style={styles.contactText}>info.coc@phinmaed.com</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -142,7 +148,7 @@ const SchoolDetails = () => {
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
-  onPress={() => Linking.openURL('https://www.cu.edu.ph/')}
+  onPress={() => Linking.openURL('https://coc.phinma.edu.ph/')}
 >
   <Text style={styles.linkButtonText}>
     Need more information? Click here.

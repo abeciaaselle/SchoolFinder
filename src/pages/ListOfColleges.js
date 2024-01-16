@@ -1,7 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import SegmentedControl from '@react-native-segmented-control/segmented-control';
-import CapitolUniversityPage from '../pages/colleges/CapitolUniversityPage';
+import AcatechPage from '../pages/colleges/AcatechPage';
+import AmaPage from '../pages/colleges/AmaPage';
+import CagayanPhinmaPage from './colleges/CagayanPhinmaPage';
+import CapitolUniversityPage from './colleges/CapitolUniversityPage';
+import GoldenHeritagePage from './colleges/GoldenHeritagePage';
+import InformaticsPage from './colleges/InformaticsPage';
+import LiceoPage from './colleges/LiceoPage';
+import LourdesPage from './colleges/LourdesPage';
+import OroBiblePage from './colleges/OroBiblePage';
+import PilgrimPage from './colleges/PilgrimPage';
+import SpcPage from './colleges/SpcPage';
+import StiPage from './colleges/StiPage';
+import UstpPage from './colleges/UstpPage';
+import VineyardPage from './colleges/VineyardPage';
+import XavierPage from './colleges/XavierPage';
+
+
+
+
+
+
+
+
+
 
 const allColleges = [
   {
@@ -13,12 +36,12 @@ const allColleges = [
     address: 'AMA Computer University - Cagayan de Oro Campus, 3rd floor, Goking Building cor. Daumar & JR Borja Streets, Brgy. 39 (Cogon), Cagayan de Oro City',
   },
   {
-    name: 'Capitol University',
-    address: 'Corrales Avenue, Cagayan de Oro City',
-  },
-  {
     name: 'Cagayan de Oro College-PHINMA',
     address: 'Max Suniel St., Carmen, Cagayan de Oro City',
+  },
+  {
+    name: 'Capitol University',
+    address: 'Corrales Avenue, Cagayan de Oro City',
   },
   {
     name: 'Golden Heritage Polytechnic College',
@@ -26,7 +49,7 @@ const allColleges = [
   },
   {
     name: 'Informatics College Cagayan de Oro',
-    address: 'Door 6, 2nd Floor, Lourdes College, Capistrano-Mabini Sts., Cagayan de Oro City',
+    address: '2/F, Stary Building, 9000, Max Y. Suniel St, Cagayan de Oro',
   },
   {
     name: 'Liceo de Cagayan University',
@@ -93,6 +116,34 @@ const ListOfColleges = ({ navigation }) => {
     const navigateToCollegePage = (collegeName) => {
       if (collegeName === 'Capitol University') {
         navigation.navigate('CapitolUniversityPage');
+      } else if (collegeName === 'Acatech Aviation College') {
+        navigation.navigate('AcatechPage');
+      }  else if (collegeName === 'AMA Computer College') {
+        navigation.navigate('AmaPage');
+      }  else if (collegeName === 'Cagayan de Oro College-PHINMA') {
+        navigation.navigate('CagayanPhinmaPage');
+      }  else if (collegeName === 'Golden Heritage Polytechnic College') {
+        navigation.navigate('GoldenHeritagePage');
+      }  else if (collegeName === 'Informatics College Cagayan de Oro') {
+        navigation.navigate('InformaticsPage');
+      }  else if (collegeName === 'Liceo de Cagayan University') {
+        navigation.navigate('LiceoPage');
+      }  else if (collegeName === 'Lourdes College') {
+        navigation.navigate('LourdesPage');
+      }  else if (collegeName === 'Oro Bible College') {
+        navigation.navigate('OroBiblePage');
+      }  else if (collegeName === 'Pilgrim Christian College') {
+        navigation.navigate('PilgrimPage');
+      }  else if (collegeName === 'Southern de Oro Philippines College') {
+        navigation.navigate('SpcPage');
+      }  else if (collegeName === 'STI College') {
+        navigation.navigate('StiPage');
+      }  else if (collegeName === 'University of Science and Technology of Southern Philippines (USTP)') {
+        navigation.navigate('UstpPage');
+      }  else if (collegeName === 'Vineyard College') {
+        navigation.navigate('VineyardPage');  
+      }  else if (collegeName === 'Xavier University – Ateneo de Cagayan') {
+        navigation.navigate('XavierPage');
       } else {
         // Add similar navigation logic for other colleges if needed
       }
@@ -145,7 +196,7 @@ const ListOfColleges = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     padding: 20,
   },
 //   heading: {

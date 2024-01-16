@@ -3,9 +3,10 @@ import { View, Text, Image, TouchableOpacity, Linking, StyleSheet, ScrollView } 
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const SchoolDetails = () => {
+const InformaticsPage = () => {
   const [showAbout, setShowAbout] = useState(true);
   const [showCourses, setShowCourses] = useState(false);
+  const [showWhyUs, setShowWhyUs] = useState(false);
   const [showContact, setShowContact] = useState(false);
 
   const handleToggleSection = (section) => {
@@ -13,21 +14,25 @@ const SchoolDetails = () => {
       case 'about':
         setShowAbout(true);
         setShowCourses(false);
+        setShowWhyUs(false);
         setShowContact(false);
         break;
       case 'courses':
         setShowAbout(false);
         setShowCourses(true);
+        setShowWhyUs(false);
         setShowContact(false);
         break;
       case 'whyUs':
         setShowAbout(false);
         setShowCourses(false);
+        setShowWhyUs(true);
         setShowContact(false);
         break;
       case 'contact':
         setShowAbout(false);
         setShowCourses(false);
+        setShowWhyUs(false);
         setShowContact(true);
         break;
       default:
@@ -36,28 +41,25 @@ const SchoolDetails = () => {
   };
 
   const handlePhonePress = () => {
-    Linking.openURL('tel:0917-864-8928');
-  };
-  const handleHotlinePress = () => {
-    Linking.openURL('tel: (088) 864-8865');
+    Linking.openURL('tel:0917 703 3467');
   };
 
   const handleEmailPress = () => {
-    Linking.openURL('mailto:cu@g.cu.edu.ph');
+    Linking.openURL('mailto:tech.support@informatics.edu.ph');
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Capitol University</Text>
+      <Text style={styles.title}>Informatics College Cagayan de Oro</Text>
 
       {/* Address */}
-      <Text style={styles.address}>Corrales Avenue, Cagayan de Oro City</Text>
+      <Text style={styles.address}>2/F, Stary Building, 9000, Max Y. Suniel St, Cagayan de Oro</Text>
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
-      <Image source={require('../../../assets/images/CU/cu3.jpg')} style={styles.logo} />
-      <Image source={require('../../../assets/images/CU/CUpic1.jpg')} style={styles.logo} />
-      <Image source={require('../../../assets/images/CU/CUpic2.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/Informatics/informatics1.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/Informatics/informatics2.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/Informatics/informatics3.jpg')} style={styles.logo} />
 
       </Swiper>
       {/* Panel */}
@@ -68,6 +70,9 @@ const SchoolDetails = () => {
         <TouchableOpacity onPress={() => handleToggleSection('courses')}>
           <Text style={[styles.panelItem, showCourses && styles.activePanel]}>Courses Offered</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleToggleSection('whyUs')}>
+          <Text style={[styles.panelItem, showWhyUs && styles.activePanel]}>Why Us?</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => handleToggleSection('contact')}>
           <Text style={[styles.panelItem, showContact && styles.activePanel]}>Contact Us</Text>
         </TouchableOpacity>
@@ -77,42 +82,30 @@ const SchoolDetails = () => {
       {showAbout && (
   <>
     <View style={styles.backgroundContainer}>
-      <Text style={styles.background}>Capitol University formerly Cagayan Capitol College was established in 1971 as a non – sectarian, co – educational private academic institution, duly registered with the Securities and Exchange Commission as a stock corporation and operates with the authority of the Department of Education for its primary and secondary programs and the Commission on Higher Education for its tertiary, graduate and postgraduate programs.</Text>
+      <Text style={styles.background}>Our roots can be traced back to 1983 when Informatics Education was founded in Singapore in response to the demands for skilled Information Technology professionals in Asia. With the passion for technology and the vision of making IT education more accessible to Filipinos, Leonardo “Leo” Angeles Riingen established Informatics Philippines in 1993.</Text>
     </View>
     <View style={styles.backgroundContainer}>
-    <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}>Capitol University is committed to develop the youth into “Total Persons,” mature and responsible individuals who are intellectually, professionally, and technically competent, imbued with desirable attitudes, and steeped in moral and spiritual values, who will serve as catalyst for social transformation.</Text>
-    </View>
-    <View style={styles.backgroundContainer}>
-    <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.mission}>Accessible excellent education for enhanced quality of life.</Text>
+    <Text style={styles.title}>MISSION and VISION</Text>  
+      <Text style={styles.mission}>We are the most preferred and leading private educational institution offering IT-enhanced programs transforming students to globally competitive individuals who can be innovators of the world.</Text>
     </View>
   </>
 )}
       {showCourses && (
         <View style={styles.coursesContainer}>
-          <Text style={styles.categoryCourse}>Business and Management</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Accountancy</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Management Accounting</Text>
           <Text style={styles.categoryCourse}>Information Technology</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Computer Science</Text>
           <Text style={styles.categoryItem}>Bachelor of Science in Information Technology</Text>
-          <Text style={styles.categoryCourse}>Law and Legal Studies</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Criminology</Text>
-          <Text style={styles.categoryCourse}>Education</Text>
-          <Text style={styles.categoryItem}>Bachelor of Elementary Education</Text>
-          <Text style={styles.categoryItem}>Bachelor of Secondary Education</Text>
-          <Text style={styles.categoryCourse}>Engineering and Technology</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Civil Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Electronics & Communications Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Mechanical Engineering</Text>
-          <Text style={styles.categoryCourse}>Health and Medicine</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Nursing</Text>
-          <Text style={styles.categoryCourse}>Maritime</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Transportation</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Computer Science</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Information Systems</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Entrepreneurship</Text>
+           </View>
+      )}
 
+      {showWhyUs && (
+        <View style={styles.categoryContainer}>
+          <Text style={styles.categoryWhyUs}>Informatics values your dreams as much as we value quality education. Thus, putting you first by providing a well-rounded curriculum that leads to employability and sustainability is our utmost priority.</Text>
+          <Text style={styles.categoryWhyUs}>Globally Recognized</Text>
+          <Text style={styles.categoryWhyUs}>International Qualifies Graduates</Text>
+          <Text style={styles.categoryWhyUs}>Guaranteed Employment</Text>
         </View>
       )}
 
@@ -121,19 +114,13 @@ const SchoolDetails = () => {
           <TouchableOpacity onPress={handlePhonePress}>
             <View style={styles.contactItem}>
               <Icon name="phone" size={20} color="black" />
-              <Text style={styles.contactText}> 0917-864-8928</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleHotlinePress}>
-            <View style={styles.contactItem}>
-              <Icon name="phone" size={20} color="black" />
-              <Text style={styles.contactText}>(088) 864-8865</Text>
+              <Text style={styles.contactText}>0917 703 3467</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleEmailPress}>
             <View style={styles.contactItem}>
               <Icon name="envelope" size={20} color="black" />
-              <Text style={styles.contactText}>cu@g.cu.edu.ph</Text>
+              <Text style={styles.contactText}>tech.support@informatics.edu.ph</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -142,7 +129,7 @@ const SchoolDetails = () => {
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
-  onPress={() => Linking.openURL('https://www.cu.edu.ph/')}
+  onPress={() => Linking.openURL('https://informatics.edu.ph/')}
 >
   <Text style={styles.linkButtonText}>
     Need more information? Click here.
@@ -320,4 +307,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SchoolDetails;
+export default InformaticsPage;

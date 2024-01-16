@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, Linking, StyleSheet, ScrollView } 
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const SchoolDetails = () => {
+const PilgrimPage = () => {
   const [showAbout, setShowAbout] = useState(true);
   const [showCourses, setShowCourses] = useState(false);
   const [showContact, setShowContact] = useState(false);
@@ -20,11 +20,6 @@ const SchoolDetails = () => {
         setShowCourses(true);
         setShowContact(false);
         break;
-      case 'whyUs':
-        setShowAbout(false);
-        setShowCourses(false);
-        setShowContact(false);
-        break;
       case 'contact':
         setShowAbout(false);
         setShowCourses(false);
@@ -36,28 +31,25 @@ const SchoolDetails = () => {
   };
 
   const handlePhonePress = () => {
-    Linking.openURL('tel:0917-864-8928');
-  };
-  const handleHotlinePress = () => {
-    Linking.openURL('tel: (088) 864-8865');
+    Linking.openURL('tel:(088) 856-4232');
   };
 
   const handleEmailPress = () => {
-    Linking.openURL('mailto:cu@g.cu.edu.ph');
+    Linking.openURL('mailto:pilgrimchristiancollege@pilgrim.edu.ph');
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Capitol University</Text>
+      <Text style={styles.title}>Pilgrim Christian College</Text>
 
       {/* Address */}
-      <Text style={styles.address}>Corrales Avenue, Cagayan de Oro City</Text>
+      <Text style={styles.address}>1129 Claro M. Recto Avenue, Lapasan, Cagayan de Oro City</Text>
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
-      <Image source={require('../../../assets/images/CU/cu3.jpg')} style={styles.logo} />
-      <Image source={require('../../../assets/images/CU/CUpic1.jpg')} style={styles.logo} />
-      <Image source={require('../../../assets/images/CU/CUpic2.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/Pilgrim/pilgrim1.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/Pilgrim/pilgrim2.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/Pilgrim/pilgrim3.jpg')} style={styles.logo} />
 
       </Swiper>
       {/* Panel */}
@@ -77,63 +69,47 @@ const SchoolDetails = () => {
       {showAbout && (
   <>
     <View style={styles.backgroundContainer}>
-      <Text style={styles.background}>Capitol University formerly Cagayan Capitol College was established in 1971 as a non – sectarian, co – educational private academic institution, duly registered with the Securities and Exchange Commission as a stock corporation and operates with the authority of the Department of Education for its primary and secondary programs and the Commission on Higher Education for its tertiary, graduate and postgraduate programs.</Text>
+      <Text style={styles.background}>For more than a decade, PHINMA built its reputation on transforming existing educational institutions to better serve Filipino students. PHINMA Education begins this process by strategically selecting a school from a key growth area and thoroughly transforming its academics, operations, and student community in order to ensure success for Filipino youth coming from low-income families.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}>Capitol University is committed to develop the youth into “Total Persons,” mature and responsible individuals who are intellectually, professionally, and technically competent, imbued with desirable attitudes, and steeped in moral and spiritual values, who will serve as catalyst for social transformation.</Text>
+      <Text style={styles.mission}>To produce graduates with Christian values of faith, integrity, responsibility, excellence, service.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.mission}>Accessible excellent education for enhanced quality of life.</Text>
+      <Text style={styles.vision}>Premier Christ-centered education institution to empower lives throught Whole Person Education for global integration and sustainable development.</Text>
     </View>
   </>
 )}
       {showCourses && (
         <View style={styles.coursesContainer}>
+          <Text style={styles.categoryCourse}>Natural Sciences</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Environmental Science</Text>
+          <Text style={styles.categoryItem}>Bachelor of Arts in Communication</Text>
           <Text style={styles.categoryCourse}>Business and Management</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Accountancy</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Management Accounting</Text>
-          <Text style={styles.categoryCourse}>Information Technology</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Computer Science</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Information Technology</Text>
-          <Text style={styles.categoryCourse}>Law and Legal Studies</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Criminology</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Accounting</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Accounting Technology</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Entrepreneurship</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Tourism Management</Text>
           <Text style={styles.categoryCourse}>Education</Text>
-          <Text style={styles.categoryItem}>Bachelor of Elementary Education</Text>
-          <Text style={styles.categoryItem}>Bachelor of Secondary Education</Text>
-          <Text style={styles.categoryCourse}>Engineering and Technology</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Civil Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Electronics & Communications Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Mechanical Engineering</Text>
-          <Text style={styles.categoryCourse}>Health and Medicine</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Nursing</Text>
-          <Text style={styles.categoryCourse}>Maritime</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Transportation</Text>
-
-        </View>
+          <Text style={styles.categoryItem}>Bachelor of Special Education</Text>
+          <Text style={styles.categoryItem}>Bachelor of Special Needs Education</Text>
+          <Text style={styles.categoryItem}>Bachelor of Secondary Education major in English</Text>
+          <Text style={styles.categoryItem}>Bachelor in Physical Education</Text>
+          </View>
       )}
-
       {showContact && (
         <View style={styles.categoryContainer}>
           <TouchableOpacity onPress={handlePhonePress}>
             <View style={styles.contactItem}>
               <Icon name="phone" size={20} color="black" />
-              <Text style={styles.contactText}> 0917-864-8928</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleHotlinePress}>
-            <View style={styles.contactItem}>
-              <Icon name="phone" size={20} color="black" />
-              <Text style={styles.contactText}>(088) 864-8865</Text>
+              <Text style={styles.contactText}>(088) 856-4232</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleEmailPress}>
             <View style={styles.contactItem}>
               <Icon name="envelope" size={20} color="black" />
-              <Text style={styles.contactText}>cu@g.cu.edu.ph</Text>
+              <Text style={styles.contactText}>pilgrimchristiancollege@pilgrim.edu.ph</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -142,7 +118,7 @@ const SchoolDetails = () => {
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
-  onPress={() => Linking.openURL('https://www.cu.edu.ph/')}
+  onPress={() => Linking.openURL('https://pilgrimchristiancollege.edu.ph/')}
 >
   <Text style={styles.linkButtonText}>
     Need more information? Click here.
@@ -320,4 +296,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SchoolDetails;
+export default PilgrimPage;

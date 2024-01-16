@@ -397,7 +397,7 @@ const AssessmentPage = ({ navigation }) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.heading}>Career Assessment Quiz</Text>
+      {/* <Text style={styles.heading}>Career Assessment Quiz</Text> */}
 
       {/* Display questions dynamically */}
       {currentQuestion < questions.length && (

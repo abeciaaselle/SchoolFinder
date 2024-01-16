@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, Linking, StyleSheet, ScrollView } 
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const SchoolDetails = () => {
+const SpcPage = () => {
   const [showAbout, setShowAbout] = useState(true);
   const [showCourses, setShowCourses] = useState(false);
   const [showContact, setShowContact] = useState(false);
@@ -20,11 +20,6 @@ const SchoolDetails = () => {
         setShowCourses(true);
         setShowContact(false);
         break;
-      case 'whyUs':
-        setShowAbout(false);
-        setShowCourses(false);
-        setShowContact(false);
-        break;
       case 'contact':
         setShowAbout(false);
         setShowCourses(false);
@@ -34,31 +29,21 @@ const SchoolDetails = () => {
         break;
     }
   };
-
-  const handlePhonePress = () => {
-    Linking.openURL('tel:0917-864-8928');
-  };
-  const handleHotlinePress = () => {
-    Linking.openURL('tel: (088) 864-8865');
-  };
-
   const handleEmailPress = () => {
-    Linking.openURL('mailto:cu@g.cu.edu.ph');
+    Linking.openURL('mailto:registrar@spccdo.edu.ph');
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Capitol University</Text>
+      <Text style={styles.title}>Southern de Oro Philippines College</Text>
 
       {/* Address */}
-      <Text style={styles.address}>Corrales Avenue, Cagayan de Oro City</Text>
+      <Text style={styles.address}>Don Apolinar Velez Street, Cagayan de Oro City</Text>
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
-      <Image source={require('../../../assets/images/CU/cu3.jpg')} style={styles.logo} />
-      <Image source={require('../../../assets/images/CU/CUpic1.jpg')} style={styles.logo} />
-      <Image source={require('../../../assets/images/CU/CUpic2.jpg')} style={styles.logo} />
-
+      <Image source={require('../../../assets/images/Spc/spc1.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/Spc/spc2.jpg')} style={styles.logo} />
       </Swiper>
       {/* Panel */}
       <View style={styles.panel}>
@@ -77,63 +62,45 @@ const SchoolDetails = () => {
       {showAbout && (
   <>
     <View style={styles.backgroundContainer}>
-      <Text style={styles.background}>Capitol University formerly Cagayan Capitol College was established in 1971 as a non – sectarian, co – educational private academic institution, duly registered with the Securities and Exchange Commission as a stock corporation and operates with the authority of the Department of Education for its primary and secondary programs and the Commission on Higher Education for its tertiary, graduate and postgraduate programs.</Text>
+      <Text style={styles.background}>The school was established upon the proposal of Engr. Apolinar Y.Garcia and Atty. Claudio M. Aguilar during the meeting of the Board of Directors of then Bermuda Shopping Center now known as Benito-Raymunda Realty Corporation in August 1981.</Text>
+      <Text style={styles.background}>The idea was to develop the conjugal real properties of the late Don Benito R. Garcia and Dona Raymunda Yabut Garcia. The founders wish to contribute their best efforts toward the welfare and benefit of the youth through education.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}>Capitol University is committed to develop the youth into “Total Persons,” mature and responsible individuals who are intellectually, professionally, and technically competent, imbued with desirable attitudes, and steeped in moral and spiritual values, who will serve as catalyst for social transformation.</Text>
+      <Text style={styles.mission}>Southern de Oro Philippines College commits itself to develop global professionals through lifelong knowledge, skills and attitudes.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.mission}>Accessible excellent education for enhanced quality of life.</Text>
+      <Text style={styles.vision}>Center of Excellence in producing global professionals who are deeply rooted in faith, nationalism and humanitarianism.</Text>
     </View>
   </>
 )}
       {showCourses && (
         <View style={styles.coursesContainer}>
           <Text style={styles.categoryCourse}>Business and Management</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Accountancy</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Management Accounting</Text>
-          <Text style={styles.categoryCourse}>Information Technology</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Computer Science</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Information Technology</Text>
-          <Text style={styles.categoryCourse}>Law and Legal Studies</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Criminology</Text>
+          <Text style={styles.categoryItem}>Bachelor of Arts in Economics</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Business Administration</Text>
           <Text style={styles.categoryCourse}>Education</Text>
           <Text style={styles.categoryItem}>Bachelor of Elementary Education</Text>
           <Text style={styles.categoryItem}>Bachelor of Secondary Education</Text>
-          <Text style={styles.categoryCourse}>Engineering and Technology</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Civil Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Electronics & Communications Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Mechanical Engineering</Text>
-          <Text style={styles.categoryCourse}>Health and Medicine</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Nursing</Text>
+          <Text style={styles.categoryCourse}>Tourism, Hospitality & Culinary</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Hotel and Restaurant Management</Text>
           <Text style={styles.categoryCourse}>Maritime</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Engineering</Text>
           <Text style={styles.categoryItem}>Bachelor of Science in Marine Transportation</Text>
-
+          <Text style={styles.categoryCourse}>Information Technology</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Information Technology</Text>
+          <Text style={styles.categoryCourse}>Humanities</Text>
+          <Text style={styles.categoryItem}>Bachelor of Arts in English</Text>
+          <Text style={styles.categoryCourse}>Social Sciences</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Criminology</Text>
         </View>
       )}
-
       {showContact && (
         <View style={styles.categoryContainer}>
-          <TouchableOpacity onPress={handlePhonePress}>
-            <View style={styles.contactItem}>
-              <Icon name="phone" size={20} color="black" />
-              <Text style={styles.contactText}> 0917-864-8928</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleHotlinePress}>
-            <View style={styles.contactItem}>
-              <Icon name="phone" size={20} color="black" />
-              <Text style={styles.contactText}>(088) 864-8865</Text>
-            </View>
-          </TouchableOpacity>
           <TouchableOpacity onPress={handleEmailPress}>
             <View style={styles.contactItem}>
               <Icon name="envelope" size={20} color="black" />
-              <Text style={styles.contactText}>cu@g.cu.edu.ph</Text>
+              <Text style={styles.contactText}>registrar@spccdo.edu.ph</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -142,7 +109,7 @@ const SchoolDetails = () => {
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
-  onPress={() => Linking.openURL('https://www.cu.edu.ph/')}
+  onPress={() => Linking.openURL('www.spccdo.edu.ph')}
 >
   <Text style={styles.linkButtonText}>
     Need more information? Click here.
@@ -320,4 +287,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SchoolDetails;
+export default SpcPage;

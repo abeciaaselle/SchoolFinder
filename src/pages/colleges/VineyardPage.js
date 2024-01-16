@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, Linking, StyleSheet, ScrollView } 
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const SchoolDetails = () => {
+const VineyardPage = () => {
   const [showAbout, setShowAbout] = useState(true);
   const [showCourses, setShowCourses] = useState(false);
   const [showContact, setShowContact] = useState(false);
@@ -20,11 +20,6 @@ const SchoolDetails = () => {
         setShowCourses(true);
         setShowContact(false);
         break;
-      case 'whyUs':
-        setShowAbout(false);
-        setShowCourses(false);
-        setShowContact(false);
-        break;
       case 'contact':
         setShowAbout(false);
         setShowCourses(false);
@@ -36,29 +31,25 @@ const SchoolDetails = () => {
   };
 
   const handlePhonePress = () => {
-    Linking.openURL('tel:0917-864-8928');
-  };
-  const handleHotlinePress = () => {
-    Linking.openURL('tel: (088) 864-8865');
+    Linking.openURL('tel:0917-770-0173');
+    Linking.openURL('tel: (088) 856 - 8646');
   };
 
   const handleEmailPress = () => {
-    Linking.openURL('mailto:cu@g.cu.edu.ph');
+    Linking.openURL('mailto:info@vipc.edu.ph');
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Capitol University</Text>
+      <Text style={styles.title}>Vineyard College</Text>
 
       {/* Address */}
-      <Text style={styles.address}>Corrales Avenue, Cagayan de Oro City</Text>
+      <Text style={styles.address}>Corrales corner Antonio Luna Streets, Cagayan de Oro</Text>
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
-      <Image source={require('../../../assets/images/CU/cu3.jpg')} style={styles.logo} />
-      <Image source={require('../../../assets/images/CU/CUpic1.jpg')} style={styles.logo} />
-      <Image source={require('../../../assets/images/CU/CUpic2.jpg')} style={styles.logo} />
-
+      <Image source={require('../../../assets/images/vineyard/vineyard.jpg')} style={styles.logo} />
+      <Image source={require('../../../assets/images/vineyard/vineyard2.jpg')} style={styles.logo} />
       </Swiper>
       {/* Panel */}
       <View style={styles.panel}>
@@ -77,63 +68,43 @@ const SchoolDetails = () => {
       {showAbout && (
   <>
     <View style={styles.backgroundContainer}>
-      <Text style={styles.background}>Capitol University formerly Cagayan Capitol College was established in 1971 as a non – sectarian, co – educational private academic institution, duly registered with the Securities and Exchange Commission as a stock corporation and operates with the authority of the Department of Education for its primary and secondary programs and the Commission on Higher Education for its tertiary, graduate and postgraduate programs.</Text>
+      <Text style={styles.background}> Vineyard College is a non-stock and non-profit Educational Institution established with the main purpose of providing quality basic, technical /vocational, higher and advanced education responsive to the need of time and society.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}>Capitol University is committed to develop the youth into “Total Persons,” mature and responsible individuals who are intellectually, professionally, and technically competent, imbued with desirable attitudes, and steeped in moral and spiritual values, who will serve as catalyst for social transformation.</Text>
+      <Text style={styles.mission}>Vineyard College promotes positive learning opportunities through leadership by example and life long learning to meet the needs of our diverse community</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.mission}>Accessible excellent education for enhanced quality of life.</Text>
+      <Text style={styles.vision}> A center of education that develops globally competitive individuals who are equipped with the right knowledge, skills, values & attitude.</Text>
     </View>
   </>
 )}
       {showCourses && (
         <View style={styles.coursesContainer}>
           <Text style={styles.categoryCourse}>Business and Management</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Accountancy</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Management Accounting</Text>
-          <Text style={styles.categoryCourse}>Information Technology</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Computer Science</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Information Technology</Text>
-          <Text style={styles.categoryCourse}>Law and Legal Studies</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Criminology</Text>
-          <Text style={styles.categoryCourse}>Education</Text>
-          <Text style={styles.categoryItem}>Bachelor of Elementary Education</Text>
-          <Text style={styles.categoryItem}>Bachelor of Secondary Education</Text>
-          <Text style={styles.categoryCourse}>Engineering and Technology</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Civil Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Electronics & Communications Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Mechanical Engineering</Text>
-          <Text style={styles.categoryCourse}>Health and Medicine</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Nursing</Text>
-          <Text style={styles.categoryCourse}>Maritime</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Engineering</Text>
-          <Text style={styles.categoryItem}>Bachelor of Science in Marine Transportation</Text>
-
+          <Text style={styles.categoryItem}>Bachelor of Science in Business Administration</Text>
+          <Text style={styles.categoryItem}>Bachelor of Science in Hotel & Restaurant Management</Text>
         </View>
       )}
-
       {showContact && (
         <View style={styles.categoryContainer}>
           <TouchableOpacity onPress={handlePhonePress}>
             <View style={styles.contactItem}>
               <Icon name="phone" size={20} color="black" />
-              <Text style={styles.contactText}> 0917-864-8928</Text>
+              <Text style={styles.contactText}>0917-770-0173</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={handleHotlinePress}>
+          <TouchableOpacity onPress={handlePhonePress}>
             <View style={styles.contactItem}>
               <Icon name="phone" size={20} color="black" />
-              <Text style={styles.contactText}>(088) 864-8865</Text>
+              <Text style={styles.contactText}>(088) 856 - 8646</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={handleEmailPress}>
             <View style={styles.contactItem}>
               <Icon name="envelope" size={20} color="black" />
-              <Text style={styles.contactText}>cu@g.cu.edu.ph</Text>
+              <Text style={styles.contactText}>info@vipc.edu.ph</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -142,7 +113,7 @@ const SchoolDetails = () => {
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
-  onPress={() => Linking.openURL('https://www.cu.edu.ph/')}
+  onPress={() => Linking.openURL('https://www.vipc.edu.ph/')}
 >
   <Text style={styles.linkButtonText}>
     Need more information? Click here.
@@ -320,4 +291,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SchoolDetails;
+export default VineyardPage;

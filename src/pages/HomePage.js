@@ -143,6 +143,14 @@ const styles = StyleSheet.create({
     padding: 25,
     borderRadius: 5,
     marginBottom: 20,
+    shadowColor: 'gray',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 15,
+    shadowRadius: 5,
+    elevation: 10,
   },
   buttonText: {
     color: 'white',
