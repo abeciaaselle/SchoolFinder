@@ -48,10 +48,10 @@ const SchoolDetails = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Capitol University</Text>
+      {/* <Text style={styles.title}>Capitol University</Text> */}
 
       {/* Address */}
-      <Text style={styles.address}>Corrales Avenue, Cagayan de Oro City</Text>
+      {/* <Text style={styles.address}>Corrales Avenue, Cagayan de Oro City</Text> */}
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
@@ -76,16 +76,21 @@ const SchoolDetails = () => {
       {/* Content */}
       {showAbout && (
   <>
+   {/* Address with icon */}
+   <View style={styles.addressContainer}>
+          <Icon name="map-marker" size={20} color="gray" style={styles.addressIcon} />
+          <Text style={styles.addressText}>Corrales Avenue, Cagayan de Oro City</Text>
+        </View>
     <View style={styles.backgroundContainer}>
       <Text style={styles.background}>Capitol University formerly Cagayan Capitol College was established in 1971 as a non – sectarian, co – educational private academic institution, duly registered with the Securities and Exchange Commission as a stock corporation and operates with the authority of the Department of Education for its primary and secondary programs and the Commission on Higher Education for its tertiary, graduate and postgraduate programs.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}>Capitol University is committed to develop the youth into “Total Persons,” mature and responsible individuals who are intellectually, professionally, and technically competent, imbued with desirable attitudes, and steeped in moral and spiritual values, who will serve as catalyst for social transformation.</Text>
+      <Text style={styles.background}>Capitol University is committed to develop the youth into “Total Persons,” mature and responsible individuals who are intellectually, professionally, and technically competent, imbued with desirable attitudes, and steeped in moral and spiritual values, who will serve as catalyst for social transformation.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.mission}>Accessible excellent education for enhanced quality of life.</Text>
+      <Text style={styles.background}>Accessible excellent education for enhanced quality of life.</Text>
     </View>
   </>
 )}
@@ -139,6 +144,7 @@ const SchoolDetails = () => {
         </View>
       )}
 
+<View style={styles.footerContainer}></View>
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
@@ -149,7 +155,6 @@ const SchoolDetails = () => {
   </Text>
 </TouchableOpacity>
 
-
     </ScrollView>
   );
 };
@@ -157,7 +162,7 @@ const SchoolDetails = () => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -172,7 +177,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'left',
-    marginLeft: 20,
+    // marginLeft: 20,
     width: '100%',
   },
   address: {
@@ -182,6 +187,20 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     width: '100%',
     color: 'gray',
+  },
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    marginLeft: 20, 
+  },
+  addressIcon: {
+    marginRight: 10,
+  },
+  addressText: {
+    fontSize: 14,
+    color: 'gray',
+    width: '100%',
   },
   logoContainer: {
     flex: 1,
@@ -296,10 +315,14 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 10,
   },
+  footerContainer: { //add container footer
+    flex: 1,
+  },
   floatingButton: {
-    position: 'absolute',
-    bottom: 15,
+    // position: 'absolute',
+    // bottom: 15,
     width: '80%',
+    marginBottom: 20, // add
     alignItems: 'center',
     backgroundColor: '#1D2951',
     padding: 15,
@@ -319,5 +342,4 @@ const styles = StyleSheet.create({
     textDecorationLine: 'none',
   },
 });
-
 export default SchoolDetails;

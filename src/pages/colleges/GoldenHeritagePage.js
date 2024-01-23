@@ -44,10 +44,10 @@ const GoldenHeritagePage = () => {
     };
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>Golden Heritage Polytechnic College</Text>
+        {/* <Text style={styles.title}>Golden Heritage Polytechnic College</Text> */}
   
         {/* Address */}
-        <Text style={styles.address}>Vamenta Boulevard, Carmen, 9000 Cagayan de Oro City</Text>
+        {/* <Text style={styles.address}>Vamenta Boulevard, Carmen, 9000 Cagayan de Oro City</Text> */}
   
         {/* Logo image with automatic swiper */}
         <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
@@ -72,18 +72,23 @@ const GoldenHeritagePage = () => {
         {/* Content */}
         {showAbout && (
     <>
+    {/* Address with icon */}
+    <View style={styles.addressContainer}>
+          <Icon name="map-marker" size={20} color="gray" style={styles.addressIcon} />
+          <Text style={styles.addressText}>Vamenta Boulevard, Carmen, 9000 Cagayan de Oro City</Text>
+        </View>
       <View style={styles.backgroundContainer}>
-        <Text style={styles.background}> The Golden Heritage Polytechnic College duly registered with the Security and Exchange Commission (SEC) as a non-stock, non-profit, non-sectarian educational institution was founded in 1987 by Capt. Tito P. Dichosa, a master mariner and a maritime school department head at the same time professor and his wife Netty D. Dichosa, a grade school teacher, with the vision of producing quality graduates at a very low school fees. It operates with the authority of the Department of Education (DepED) for its basic education program, the Technical Education and Skills Development Authority (TESDA) for its tertiary training programs, and the Commission on Higher Education (CHED) for its tertiary baccalaureate programs.</Text>
+        <Text style={styles.background}>The Golden Heritage Polytechnic College duly registered with the Security and Exchange Commission (SEC) as a non-stock, non-profit, non-sectarian educational institution was founded in 1987 by Capt. Tito P. Dichosa, a master mariner and a maritime school department head at the same time professor and his wife Netty D. Dichosa, a grade school teacher, with the vision of producing quality graduates at a very low school fees. It operates with the authority of the Department of Education (DepED) for its basic education program, the Technical Education and Skills Development Authority (TESDA) for its tertiary training programs, and the Commission on Higher Education (CHED) for its tertiary baccalaureate programs.</Text>
       </View>
       <View style={styles.backgroundContainer}>
       <Text style={styles.title}>MISSION</Text>  
-        <Text style={styles.mission}>Enhance knowledge by keeping abreast with the new educational trends for global excellence.</Text>
-        <Text style={styles.mission}>Continually instill the passion and love of work for skills development.</Text>
-        <Text style={styles.mission}>Wholeheartedly abide by the school's rules and regulations manifesting a refined-character person at all times.</Text>
+        <Text style={styles.background}>Enhance knowledge by keeping abreast with the new educational trends for global excellence.</Text>
+        <Text style={styles.background}>Continually instill the passion and love of work for skills development.</Text>
+        <Text style={styles.background}>Wholeheartedly abide by the school's rules and regulations manifesting a refined-character person at all times.</Text>
       </View>
       <View style={styles.backgroundContainer}>
       <Text style={styles.title}>VISION</Text>  
-        <Text style={styles.mission}>The Golden Heritage Polytechnic College is a forerunner of educational pursuits that cater to the total development of the person’s inherent potentialities thereby capable to withstand the challenges of society.</Text>
+        <Text style={styles.background}>The Golden Heritage Polytechnic College is a forerunner of educational pursuits that cater to the total development of the person’s inherent potentialities thereby capable to withstand the challenges of society.</Text>
       </View>
     </>
   )}
@@ -120,7 +125,7 @@ const GoldenHeritagePage = () => {
             </TouchableOpacity>
           </View>
         )}
-  
+<View style={styles.footerContainer}>
         {/* Website Link */}
         <TouchableOpacity
     style={styles.floatingButton}
@@ -130,7 +135,7 @@ const GoldenHeritagePage = () => {
       Need more information? Click here.
     </Text>
   </TouchableOpacity>
-  
+  </View>
   
       </ScrollView>
     );
@@ -139,7 +144,7 @@ const GoldenHeritagePage = () => {
   const styles = StyleSheet.create({
     container: {
       alignSelf: 'stretch',
-      backgroundColor: 'white',
+      // backgroundColor: 'white',
       justifyContent: 'center',
       alignItems: 'center',
     },
@@ -154,7 +159,7 @@ const GoldenHeritagePage = () => {
       marginTop: 10,
       marginBottom: 10,
       textAlign: 'left',
-      marginLeft: 20,
+      // marginLeft: 20,
       width: '100%',
     },
     address: {
@@ -179,6 +184,20 @@ const GoldenHeritagePage = () => {
       height: 200,
       resizeMode: 'cover',
     },
+    addressContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 15,
+      marginLeft: 20, 
+    },
+    addressIcon: {
+      marginRight: 10,
+    },
+    addressText: {
+      fontSize: 14,
+      color: 'gray',
+      width: '100%',
+    },
     backgroundContainer: {
       backgroundColor: '#F2F3F4',
       padding: 15,
@@ -198,6 +217,7 @@ const GoldenHeritagePage = () => {
     background: {
       fontSize: 16,
       textAlign: 'justify',
+      marginBottom: 15,
     },
     panel: {
       flexDirection: 'row',
@@ -278,10 +298,14 @@ const GoldenHeritagePage = () => {
       fontSize: 15,
       marginLeft: 10,
     },
+    footerContainer: { //add container footer
+      flex: 1,
+    },
     floatingButton: {
-      position: 'absolute',
-      bottom: 15,
+      // position: 'absolute',
+      // bottom: 15,
       width: '80%',
+      marginBottom: 20, // add
       alignItems: 'center',
       backgroundColor: '#1D2951',
       padding: 15,
@@ -301,5 +325,6 @@ const GoldenHeritagePage = () => {
       textDecorationLine: 'none',
     },
   });
+  
 
 export default GoldenHeritagePage;

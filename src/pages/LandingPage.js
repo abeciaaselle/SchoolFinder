@@ -37,9 +37,18 @@ const styles = StyleSheet.create({
     marginTop: -180,
   },
   buttonContainer: {
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 10,
+    backgroundColor: '#1D2951',
+    padding: 15,
+    borderRadius: 5,
+    width: 300,
+    shadowColor: '#1D2951',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    elevation: 10,
   },
 });
 

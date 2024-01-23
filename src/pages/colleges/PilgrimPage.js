@@ -40,10 +40,10 @@ const PilgrimPage = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Pilgrim Christian College</Text>
+      {/* <Text style={styles.title}>Pilgrim Christian College</Text> */}
 
       {/* Address */}
-      <Text style={styles.address}>1129 Claro M. Recto Avenue, Lapasan, Cagayan de Oro City</Text>
+      {/* <Text style={styles.address}>1129 Claro M. Recto Avenue, Lapasan, Cagayan de Oro City</Text> */}
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
@@ -68,16 +68,21 @@ const PilgrimPage = () => {
       {/* Content */}
       {showAbout && (
   <>
+            {/* Address with icon */}
+            <View style={styles.addressContainer}>
+          <Icon name="map-marker" size={20} color="gray" style={styles.addressIcon} />
+          <Text style={styles.addressText}>1129 Claro M. Recto Avenue, Lapasan, Cagayan de Oro City</Text>
+        </View>
     <View style={styles.backgroundContainer}>
       <Text style={styles.background}>For more than a decade, PHINMA built its reputation on transforming existing educational institutions to better serve Filipino students. PHINMA Education begins this process by strategically selecting a school from a key growth area and thoroughly transforming its academics, operations, and student community in order to ensure success for Filipino youth coming from low-income families.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}>To produce graduates with Christian values of faith, integrity, responsibility, excellence, service.</Text>
+      <Text style={styles.background}>To produce graduates with Christian values of faith, integrity, responsibility, excellence, service.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.vision}>Premier Christ-centered education institution to empower lives throught Whole Person Education for global integration and sustainable development.</Text>
+      <Text style={styles.background}>Premier Christ-centered education institution to empower lives throught Whole Person Education for global integration and sustainable development.</Text>
     </View>
   </>
 )}
@@ -114,7 +119,7 @@ const PilgrimPage = () => {
           </TouchableOpacity>
         </View>
       )}
-
+<View style={styles.footerContainer}>
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
@@ -124,7 +129,7 @@ const PilgrimPage = () => {
     Need more information? Click here.
   </Text>
 </TouchableOpacity>
-
+</View>
 
     </ScrollView>
   );
@@ -133,7 +138,7 @@ const PilgrimPage = () => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -148,7 +153,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'left',
-    marginLeft: 20,
+    // marginLeft: 20,
     width: '100%',
   },
   address: {
@@ -167,6 +172,20 @@ const styles = StyleSheet.create({
   logoSlider: {
     height: 200,
    
+  },
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    marginLeft: 20, 
+  },
+  addressIcon: {
+    marginRight: 10,
+  },
+  addressText: {
+    fontSize: 14,
+    color: 'gray',
+    width: '100%',
   },
   logo: {
     width: '100%',
@@ -192,6 +211,7 @@ const styles = StyleSheet.create({
   background: {
     fontSize: 16,
     textAlign: 'justify',
+    marginBottom: 15,
   },
   panel: {
     flexDirection: 'row',
@@ -272,10 +292,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 10,
   },
+ 
+  footerContainer: { //add container footer
+    flex: 1,
+  },
   floatingButton: {
-    position: 'absolute',
-    bottom: 15,
+    // position: 'absolute',
+    // bottom: 15,
     width: '80%',
+    marginBottom: 20, // add
     alignItems: 'center',
     backgroundColor: '#1D2951',
     padding: 15,

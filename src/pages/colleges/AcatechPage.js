@@ -241,10 +241,10 @@ const SchoolDetails = () => {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView}>
-        <Text style={styles.title}>Acatech Aviation College</Text>
+        {/* <Text style={styles.title}>Acatech Aviation College</Text> */}
 
         {/* Address */}
-        <Text style={styles.address}>TGS Square, Agora Road, Lapasan, Cagayan de Oro City</Text>
+        {/* <Text style={styles.address}>TGS Square, Agora Road, Lapasan, Cagayan de Oro City</Text> */}
 
         {/* Logo image with automatic swiper */}
         <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
@@ -271,9 +271,16 @@ const SchoolDetails = () => {
 
         {/* Content */}
         {showAbout && (
-          <View style={styles.backgroundContainer}>
-            <Text style={styles.background}>The only aviation school in Northern Mindanao.</Text>
-          </View>
+          <>
+          {/* Address with icon */}
+        <View style={styles.addressContainer}>
+          <Icon name="map-marker" size={20} color="gray" style={styles.addressIcon} />
+          <Text style={styles.addressText}>TGS Square, Agora Road, Lapasan, Cagayan de Oro City</Text>
+        </View>
+        <View style={styles.backgroundContainer}>
+          <Text style={styles.background}>The only aviation school in Northern Mindanao.</Text>
+        </View>
+          </>
         )}
 
         {showCourses && (
@@ -335,8 +342,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollView: {
-    flexGrow: 1,
-    backgroundColor: 'white',
+    // flexGrow: 1,
+    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -346,16 +353,22 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'left',
-    marginLeft: 20,
+    // marginLeft: 20,
     width: '100%',
   },
-  address: {
-    fontSize: 14,
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 15,
-    textAlign: 'left',
-    marginLeft: 20,
-    width: '100%',
+    marginLeft: 20, 
+  },
+  addressIcon: {
+    marginRight: 10,
+  },
+  addressText: {
+    fontSize: 14,
     color: 'gray',
+    width: '100%',
   },
   logoSlider: {
     height: 200,
@@ -490,4 +503,6 @@ const styles = StyleSheet.create({
 });
 
 export default SchoolDetails;
+
+
 

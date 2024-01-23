@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import SegmentedControl from '@react-native-segmented-control/segmented-control';
 import AcatechPage from '../pages/colleges/AcatechPage';
-import AmaPage from '../pages/colleges/AmaPage';
+import AmaCompPage from './colleges/AmaCompPage';
 import CagayanPhinmaPage from './colleges/CagayanPhinmaPage';
 import CapitolUniversityPage from './colleges/CapitolUniversityPage';
 import GoldenHeritagePage from './colleges/GoldenHeritagePage';
@@ -119,7 +119,7 @@ const ListOfColleges = ({ navigation }) => {
       } else if (collegeName === 'Acatech Aviation College') {
         navigation.navigate('AcatechPage');
       }  else if (collegeName === 'AMA Computer College') {
-        navigation.navigate('AmaPage');
+        navigation.navigate('AmaCompPage');
       }  else if (collegeName === 'Cagayan de Oro College-PHINMA') {
         navigation.navigate('CagayanPhinmaPage');
       }  else if (collegeName === 'Golden Heritage Polytechnic College') {
@@ -190,15 +190,18 @@ const ListOfColleges = ({ navigation }) => {
               <Text style={styles.collegeAddress}>{college.address}</Text>
             </TouchableOpacity>
           ))}
-      </ScrollView>
-    );
-  };
+      {/* Footer with space */}
+      <View style={styles.footerContainer}></View>
+    </ScrollView>
+  );
+};
+
 
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     padding: 20,
-  },
+    },
 //   heading: {
 //     fontSize: 20,
 //     fontWeight: 'bold',
@@ -213,7 +216,16 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 8,
     padding: 10,
-    borderColor: 'lightgray',
+    borderColor: 'white',
+    backgroundColor: 'white',
+    shadowColor: 'gray',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 5,
   },
   collegeName: {
     fontSize: 15,
@@ -223,6 +235,9 @@ const styles = StyleSheet.create({
   collegeAddress: {
     fontSize: 12,
     color: 'gray',
+  },
+  footerContainer: {
+    height: 40, 
   },
 });
 

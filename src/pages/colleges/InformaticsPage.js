@@ -50,10 +50,10 @@ const InformaticsPage = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Informatics College Cagayan de Oro</Text>
+      {/* <Text style={styles.title}>Informatics College Cagayan de Oro</Text> */}
 
       {/* Address */}
-      <Text style={styles.address}>2/F, Stary Building, 9000, Max Y. Suniel St, Cagayan de Oro</Text>
+      {/* <Text style={styles.address}>2/F, Stary Building, 9000, Max Y. Suniel St, Cagayan de Oro</Text> */}
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
@@ -81,12 +81,17 @@ const InformaticsPage = () => {
       {/* Content */}
       {showAbout && (
   <>
+  {/* Address with icon */}
+  <View style={styles.addressContainer}>
+          <Icon name="map-marker" size={20} color="gray" style={styles.addressIcon} />
+          <Text style={styles.addressText}>2/F, Stary Building, 9000, Max Y. Suniel St, Cagayan de Oro</Text>
+        </View>
     <View style={styles.backgroundContainer}>
       <Text style={styles.background}>Our roots can be traced back to 1983 when Informatics Education was founded in Singapore in response to the demands for skilled Information Technology professionals in Asia. With the passion for technology and the vision of making IT education more accessible to Filipinos, Leonardo “Leo” Angeles Riingen established Informatics Philippines in 1993.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION and VISION</Text>  
-      <Text style={styles.mission}>We are the most preferred and leading private educational institution offering IT-enhanced programs transforming students to globally competitive individuals who can be innovators of the world.</Text>
+      <Text style={styles.background}>We are the most preferred and leading private educational institution offering IT-enhanced programs transforming students to globally competitive individuals who can be innovators of the world.</Text>
     </View>
   </>
 )}
@@ -125,7 +130,7 @@ const InformaticsPage = () => {
           </TouchableOpacity>
         </View>
       )}
-
+<View style={styles.footerContainer}>
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
@@ -135,6 +140,7 @@ const InformaticsPage = () => {
     Need more information? Click here.
   </Text>
 </TouchableOpacity>
+</View>
 
 
     </ScrollView>
@@ -144,7 +150,7 @@ const InformaticsPage = () => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -159,7 +165,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'left',
-    marginLeft: 20,
+    // marginLeft: 20,
     width: '100%',
   },
   address: {
@@ -169,6 +175,20 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     width: '100%',
     color: 'gray',
+  },
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    marginLeft: 20, 
+  },
+  addressIcon: {
+    marginRight: 10,
+  },
+  addressText: {
+    fontSize: 14,
+    color: 'gray',
+    width: '100%',
   },
   logoContainer: {
     flex: 1,
@@ -283,10 +303,14 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 10,
   },
+  footerContainer: { //add container footer
+    flex: 1,
+  },
   floatingButton: {
-    position: 'absolute',
-    bottom: 15,
+    // position: 'absolute',
+    // bottom: 15,
     width: '80%',
+    marginBottom: 20, // add
     alignItems: 'center',
     backgroundColor: '#1D2951',
     padding: 15,

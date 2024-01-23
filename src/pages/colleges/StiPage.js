@@ -40,10 +40,10 @@ const StiPage = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>STI College</Text>
+      {/* <Text style={styles.title}>STI College</Text> */}
 
       {/* Address */}
-      <Text style={styles.address}>Mortola Street, Barangay 40, Cagayan de Oro City</Text>
+      {/* <Text style={styles.address}>Mortola Street, Barangay 40, Cagayan de Oro City</Text> */}
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
@@ -68,6 +68,11 @@ const StiPage = () => {
       {/* Content */}
       {showAbout && (
   <>
+            {/* Address with icon */}
+            <View style={styles.addressContainer}>
+          <Icon name="map-marker" size={20} color="gray" style={styles.addressIcon} />
+          <Text style={styles.addressText}>Mortola Street, Barangay 40, Cagayan de Oro City</Text>
+        </View>
     <View style={styles.backgroundContainer}>
       <Text style={styles.background}>STI College (formerly known as Systems Technology Institute) is a private network of university/colleges and senior high schools in the Philippines. They primarily cater to computer science and information technology education, but also offer other courses, such as business management and accountancy. The acronym STI has been declared as an orphan initialism after their name change in 2006.</Text>
     </View>
@@ -97,7 +102,7 @@ const StiPage = () => {
           </TouchableOpacity>
         </View>
       )}
-
+<View style={styles.footerContainer}>
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
@@ -107,7 +112,7 @@ const StiPage = () => {
     Need more information? Click here.
   </Text>
 </TouchableOpacity>
-
+</View>
 
     </ScrollView>
   );
@@ -116,7 +121,7 @@ const StiPage = () => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -131,7 +136,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'left',
-    marginLeft: 20,
+    // marginLeft: 20,
     width: '100%',
   },
   address: {
@@ -150,6 +155,20 @@ const styles = StyleSheet.create({
   logoSlider: {
     height: 200,
    
+  },
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    marginLeft: 20, 
+  },
+  addressIcon: {
+    marginRight: 10,
+  },
+  addressText: {
+    fontSize: 14,
+    color: 'gray',
+    width: '100%',
   },
   logo: {
     width: '100%',
@@ -175,6 +194,7 @@ const styles = StyleSheet.create({
   background: {
     fontSize: 16,
     textAlign: 'justify',
+    marginBottom: 15,
   },
   panel: {
     flexDirection: 'row',
@@ -255,10 +275,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 10,
   },
+
+  footerContainer: { //add container footer
+    flex: 1,
+  },
   floatingButton: {
-    position: 'absolute',
-    bottom: 15,
+    // position: 'absolute',
+    // bottom: 15,
     width: '80%',
+    marginBottom: 20, // add
     alignItems: 'center',
     backgroundColor: '#1D2951',
     padding: 15,
@@ -278,5 +303,4 @@ const styles = StyleSheet.create({
     textDecorationLine: 'none',
   },
 });
-
 export default StiPage;

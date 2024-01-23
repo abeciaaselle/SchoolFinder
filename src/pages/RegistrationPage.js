@@ -55,24 +55,34 @@ const styles = StyleSheet.create({
   input: {
     width: 350,
     height: 60,
-    borderColor: 'gray',
+    borderColor: 'lightgray',
     borderRadius: 5,
     borderWidth: 1,
     marginBottom: 20,
     padding: 8,
-    textAlign: 'center', // Center the text within the TextInput
+    textAlign: 'center', 
+ 
   },
   submitButton: {
     backgroundColor: '#1D2951',
     padding: 15,
     borderRadius: 5,
     width: 350,
+    shadowColor: '#1D2951',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    elevation: 10,
     
   },
   submitButtonText: {
     color: 'white',
     fontSize: 18,
     textAlign: 'center',
+    
   },
 });
 

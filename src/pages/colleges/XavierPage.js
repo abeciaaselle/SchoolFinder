@@ -40,10 +40,10 @@ const XavierPage = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Xavier University – Ateneo de Cagayan</Text>
+      {/* <Text style={styles.title}>Xavier University – Ateneo de Cagayan</Text> */}
 
       {/* Address */}
-      <Text style={styles.address}>Corrales Avenue, Cagayan de Oro City</Text>
+      {/* <Text style={styles.address}>Corrales Avenue, Cagayan de Oro City</Text> */}
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
@@ -68,18 +68,27 @@ const XavierPage = () => {
       {/* Content */}
       {showAbout && (
   <>
+            {/* Address with icon */}
+            <View style={styles.addressContainer}>
+          <Icon name="map-marker" size={20} color="gray" style={styles.addressIcon} />
+          <Text style={styles.addressText}>Corrales Avenue, Cagayan de Oro City</Text>
+        </View>
     <View style={styles.backgroundContainer}>
-      <Text style={styles.background}>The Xavier University – Ateneo de Cagayan, also known simply as the Ateneo de Cagayan or Xavier is a private, Catholic, coeducational, basic and higher education institution. It is operated by the Philippine Province of the Society of Jesus in Cagayan de Oro, Misamis Oriental, Philippines. Founded in 1933 as the Ateneo de Cagayan, it became the first higher education institution in Mindanao to receive a university status a year before its sister school Ateneo de Manila. It was given its present name in honor of the Jesuit missionary St. Francis Xavier.</Text>
-      <Text style={styles.background}>The university offers primary and secondary education as well as undergraduate and post-graduate education in humanities, social sciences, engineering, management and business. It offers professional degrees through graduate schools such as Xavier Ateneo College of Law and Jose P. Rizal School of Medicine.</Text>
+    <Text style={[styles.background, styles.marginBottom]}>The Xavier University – Ateneo de Cagayan, also known simply as the Ateneo de Cagayan or Xavier is a private, Catholic, coeducational, basic and higher education institution. It is operated by the Philippine Province of the Society of Jesus in Cagayan de Oro, Misamis Oriental, Philippines. Founded in 1933 as the Ateneo de Cagayan, it became the first higher education institution in Mindanao to receive a university status a year before its sister school Ateneo de Manila. It was given its present name in honor of the Jesuit missionary St. Francis Xavier.</Text>
+    <Text style={styles.background}>The university offers primary and secondary education as well as undergraduate and post-graduate education in humanities, social sciences, engineering, management and business. It offers professional degrees through graduate schools such as Xavier Ateneo College of Law and Jose P. Rizal School of Medicine.</Text>
 
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}>Xavier University (Ateneo de Cagayan) is a Filipino, Catholic and Jesuit educational community dedicated to the integral development of the person for the needs of Mindanao, the Philippines and Asia-Pacific. As a University, Xavier engages in the authentic search for the truth through teaching, formation, research and social outreach; it is dedicated to the renewal, discovery, safeguarding and communication of knowledge and human values; and it trains men and women to think rigorously, so as to act rightly and serve humanity justly. As a Filipino University, Xavier is devoted to the appreciation, preservation and enrichment of the Filipino culture and heritage; to the sustainable development of the nation; and to the pursuit of the common good. As a Catholic University, Xavier is committed to the proclamation of the joy of the Gospel; its commitment is rooted in a deep personal friendship with Jesus Christ manifested by loyalty to the Church characterized by a preferential option for the poor; it shares in the privileged task of fostering the interdisciplinary and integrated encounter between faith, reason, and the sciences. As a Jesuit University, Xavier participates in the Jesuit mission of reconciliation with God, with others and with creation; it seeks to serve the faith, promote justice, dialogue with culture and religions, and protect the environment; it upholds the Ignatian values of magis, cura personalis and finding-God-in-all-things. In sum, Xavier University forms men and women of competence, conscience and commitment in service of the Church, the global community and the Filipino people.</Text>
+    <Text style={styles.background}>Xavier University (Ateneo de Cagayan) is a Filipino, Catholic and Jesuit educational community dedicated to the integral development of the person for the needs of Mindanao, the Philippines and Asia-Pacific. </Text>
+      <Text style={styles.background}>As a University, Xavier engages in the authentic search for the truth through teaching, formation, research and social outreach; it is dedicated to the renewal, discovery, safeguarding and communication of knowledge and human values; and it trains men and women to think rigorously, so as to act rightly and serve humanity justly.</Text>
+      <Text style={styles.background}>As a Filipino University, Xavier is devoted to the appreciation, preservation and enrichment of the Filipino culture and heritage; to the sustainable development of the nation; and to the pursuit of the common good.</Text>
+      <Text style={styles.background}>As a Catholic University, Xavier is committed to the proclamation of the joy of the Gospel; its commitment is rooted in a deep personal friendship with Jesus Christ manifested by loyalty to the Church characterized by a preferential option for the poor; it shares in the privileged task of fostering the interdisciplinary and integrated encounter between faith, reason, and the sciences.</Text>
+      <Text style={styles.background}>In sum, Xavier University forms men and women of competence, conscience and commitment in service of the Church, the global community and the Filipino people.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.vision}>To be a leading ASEAN university forming leaders of character by 2033.</Text>
+      <Text style={styles.background}>To be a leading ASEAN university forming leaders of character by 2033.</Text>
     </View>
   </>
 )}
@@ -148,7 +157,7 @@ const XavierPage = () => {
           </TouchableOpacity>
         </View>
       )}
-
+<View style={styles.footerContainer}>
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
@@ -158,7 +167,7 @@ const XavierPage = () => {
     Need more information? Click here.
   </Text>
 </TouchableOpacity>
-
+</View>
 
     </ScrollView>
   );
@@ -167,7 +176,7 @@ const XavierPage = () => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -182,7 +191,21 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'left',
-    marginLeft: 20,
+    // marginLeft: 20,
+    width: '100%',
+  },
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    marginLeft: 20, 
+  },
+  addressIcon: {
+    marginRight: 10,
+  },
+  addressText: {
+    fontSize: 14,
+    color: 'gray',
     width: '100%',
   },
   address: {
@@ -225,6 +248,7 @@ const styles = StyleSheet.create({
   },
   background: {
     fontSize: 16,
+    marginBottom: 15,
     textAlign: 'justify',
   },
   panel: {
@@ -306,10 +330,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 10,
   },
+ 
+  footerContainer: { //add container footer
+    flex: 1,
+  },
   floatingButton: {
-    position: 'absolute',
-    bottom: 15,
+    // position: 'absolute',
+    // bottom: 15,
     width: '80%',
+    marginBottom: 20, // add
     alignItems: 'center',
     backgroundColor: '#1D2951',
     padding: 15,
@@ -329,5 +358,4 @@ const styles = StyleSheet.create({
     textDecorationLine: 'none',
   },
 });
-
 export default XavierPage;

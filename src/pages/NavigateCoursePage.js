@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
-import { View, ScrollView, TouchableOpacity, Text, Modal, StyleSheet } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, ScrollView, TouchableOpacity, Text, Modal, StyleSheet, Dimensions } from 'react-native';
 import { colors } from '../color/colors';
+import RNPickerSelect from 'react-native-picker-select';
+import { LinearGradient } from 'expo-linear-gradient';
+
+
+const windowWidth = Dimensions.get('window').width;
 
 const collegesAndCourses = {
   'Acatech Aviation College': {
@@ -34,7 +39,7 @@ const collegesAndCourses = {
     ],
     'Engineering and Technology': [
       'Bachelor of Science in Civil Engineering',
-      'Bachelor of Science in Electronics & Communications Engineering',
+      'Bachelor of Science in Electronics and Communications Engineering',
       'Bachelor of Science in Marine Engineering',
       'Bachelor of Science in Mechanical Engineering',
     ],
@@ -269,7 +274,7 @@ const collegesAndCourses = {
     ],
     'Agriculture': [
       'Bachelor of Science in Agribusiness',
-      'Bachelor of Science in Agricultural and Biosystems Engineering',
+      'Bachelor of Science in Agricultural & Biosystems Engineering',
       'Bachelor of Science in Agriculture',
     ],
     'Languages': ['Bachelor of Arts in English'],
@@ -289,6 +294,8 @@ const NavigateCoursePage = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
+  const scrollViewRef = useRef(null);
+
   const extractCategories = () => {
     const categories = new Set();
 
@@ -298,29 +305,28 @@ const NavigateCoursePage = () => {
       });
     });
 
-    return Array.from(categories);
+    return Array.from(categories).sort((a, b) =>
+      a.localeCompare(b, 'en', { sensitivity: 'base' })
+    );
   };
 
-  const renderCategoryButtons = () => {
+  const renderCategoryDropdown = () => {
     const categories = extractCategories();
 
+    const categoryItems = categories.map((category) => ({
+      label: category,
+      value: category,
+    }));
+
     return (
-      <>
-        {categories.map((category) => (
-          <TouchableOpacity
-            key={category}
-            onPress={() => handleCategorySelection(category)}
-            style={[
-              styles.categoryButton,
-              selectedCategory === category ? styles.selectedButton : null,
-            ]}
-          >
-            <Text style={{ fontSize: 16, color: 'white' }}>
-              {category}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </>
+      <View style={styles.categoryDropdownContainer}>
+        <Text style={styles.dropdownLabel}>Select Category:</Text>
+        <RNPickerSelect
+          items={categoryItems}
+          onValueChange={(value) => handleCategorySelection(value)}
+          style={pickerSelectStyles}
+        />
+      </View>
     );
   };
 
@@ -337,14 +343,14 @@ const NavigateCoursePage = () => {
       }
     });
 
-    const uniqueCourses = Array.from(new Set(courses));
+    const uniqueCourses = Array.from(
+      new Set(courses)
+    ).sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }));
     const uniqueColleges = Array.from(new Set(selectedColleges));
 
-    uniqueCourses.sort(); // Sort courses alphabetically
-
     return (
-      <View style={{ marginTop: 20 }}>
-        <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 5, color: 'black' }}>
+      <View style={styles.categoryCoursesContainer}>
+        <Text style={styles.categoryCoursesHeader}>
           Courses under {selectedCategory}
         </Text>
         {uniqueCourses.map((course, index) => (
@@ -353,7 +359,7 @@ const NavigateCoursePage = () => {
             onPress={() => handleCourseSelection(course)}
             style={styles.courseButton}
           >
-            <Text>{course}</Text>
+            <Text style={styles.courseButtonText}>{course}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -362,7 +368,11 @@ const NavigateCoursePage = () => {
 
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
-    setSelectedCourse(null); // Reset selected course when a new category is selected
+    setSelectedCourse(null);
+
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: true });
+    }
   };
 
   const handleCourseSelection = (course) => {
@@ -382,25 +392,24 @@ const NavigateCoursePage = () => {
       });
     });
 
-    return schools.map((school, index) => (
-      <View key={index} style={styles.schoolContainer}>
-        <Text>{school}</Text>
+    return (
+      <View style={styles.schoolsContainer}>
+        
+        {schools.map((school, index) => (
+          <View key={index} style={styles.schoolContainer}>
+            <Text style={styles.schoolText}>{school}</Text>
+          </View>
+        ))}
       </View>
-    ));
+    );
   };
 
   return (
-    <ScrollView style={{ flex: 1, padding: 20, backgroundColor: '#f0f0f0' }}>
-      {/* Display Category Buttons */}
-      <Text style={{ fontSize: 18, marginBottom: 10, color: 'black' }}>
-        {selectedCategory ? `You chose ${selectedCategory}` : 'Choose a Category'}
-      </Text>
-      {renderCategoryButtons()}
-
-      {/* Display Courses for Selected Category */}
+    <ScrollView ref={scrollViewRef} style={styles.container}>
+      {renderCategoryDropdown()}
+      
       {selectedCategory && renderCategoryCourses()}
 
-      {/* Modal for displaying schools offering the selected course */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -409,7 +418,7 @@ const NavigateCoursePage = () => {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 10 }}>
+            <Text style={styles.modalHeaderText}>
               Schools Offering {selectedCourse}
             </Text>
             {renderSchoolsForCourse()}
@@ -417,58 +426,152 @@ const NavigateCoursePage = () => {
               onPress={() => setModalVisible(false)}
               style={styles.closeButton}
             >
-              <Text style={{ color: 'white' }}>Close</Text>
+              <Text style={styles.closeButtonText}>Close</Text>
             </TouchableOpacity>
           </View>
         </View>
       </Modal>
+
+      <View style={styles.footer}></View>
     </ScrollView>
   );
 };
-  
-  
-  const styles = StyleSheet.create({
-    categoryButton: {
-      backgroundColor: '#1D2951',
-      padding: 10,
-      borderRadius: 5,
-      marginBottom: 10,
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#f8f8f8',
+  },
+  categoryDropdownContainer: {
+    marginBottom: 20,
+  },
+  dropdownLabel: {
+    fontSize: 16,
+    marginBottom: 5,
+    color: '#333',
+  },
+  categoryCoursesContainer: {
+    marginTop: 20,
+  },
+  categoryCoursesHeader: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#333',
+  },
+  courseButton: {
+    borderWidth: 1, 
+    borderColor: 'white', 
+    borderRadius: 8,
+    padding: 15,
+    backgroundColor: 'white',
+    shadowColor: 'gray', 
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    selectedButton: {
-      backgroundColor: '#588BAE', // Change the color for selected category
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 3,
+    marginBottom: 20,
+  },
+  courseButtonText: {
+    fontSize: 16,
+    color: '#333',
+  },
+  schoolsContainer: {
+    marginTop: 20,
+  },
+  schoolsHeader: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#333',
+  },
+  schoolContainer: {
+    backgroundColor: '#fff',
+    padding: 15,
+    borderRadius: 8,
+    marginBottom: 10,
+    shadowColor: '#ddd',
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    courseButton: {
-      marginBottom: 20,
-      borderWidth: 0.5,
-      borderRadius: 8,
-      padding: 10,
-      borderColor: 'lightgray',
-      backgroundColor: 'white',
-    },
-    schoolContainer: {
-      backgroundColor: 'white',
-      padding: 10,
-      borderRadius: 5,
-      marginBottom: 10,
-    },
-    modalContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    modalContent: {
-      backgroundColor: 'white',
-      padding: 20,
-      borderRadius: 10,
-      elevation: 5,
-    },
-    closeButton: {
-      backgroundColor: 'blue',
-      padding: 10,
-      borderRadius: 5,
-      alignItems: 'center',
-      marginTop: 10,
-    },
-  });
-  
-  export default NavigateCoursePage;
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 3,
+  },
+  schoolText: {
+    fontSize: 16,
+    color: '#333',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 10,
+    elevation: 5,
+    width: '80%',
+  },
+  modalHeaderText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#333',
+  },
+  closeButton: {
+    backgroundColor: '#1D2951',
+    padding: 12,
+    borderRadius: 8,
+    marginTop: 15,
+    alignItems: 'center',
+  },
+  closeButtonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  selectedCategoryText: {
+    fontSize: 16,
+    marginTop: 10,
+    color: '#333',
+  },
+  footer: {
+    height: 20,
+  },
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+    backgroundColor: '#1D2951',
+    color: 'white',
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0.5,
+    borderColor: 'gray',
+    borderRadius: 5,
+    color: 'black',
+    paddingRight: 30, // to ensure the text is never behind the icon
+    backgroundColor: '#1D2951',
+    color: 'white',
+  },
+});
+
+export default NavigateCoursePage;
+

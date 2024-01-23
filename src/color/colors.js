@@ -1,6 +1,6 @@
 // colors.js
 const colors = {
-    primary: 'rgb(75, 83, 188)',
+    primary: '#1D2951',
     onPrimary: 'rgb(255, 255, 255)',
     primaryContainer: 'rgb(224, 224, 255)',
     onPrimaryContainer: 'rgb(0, 0, 110)',

@@ -40,10 +40,10 @@ const UstpPage = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>University of Science and Technology of Southern Philippines(USTP)</Text>
+      {/* <Text style={styles.title}>University of Science and Technology of Southern Philippines(USTP)</Text> */}
 
       {/* Address */}
-      <Text style={styles.address}>Lapasan Highway, Cagayan de Oro City</Text>
+      {/* <Text style={styles.address}>Lapasan Highway, Cagayan de Oro City</Text> */}
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
@@ -68,19 +68,24 @@ const UstpPage = () => {
       {/* Content */}
       {showAbout && (
   <>
+            {/* Address with icon */}
+            <View style={styles.addressContainer}>
+          <Icon name="map-marker" size={20} color="gray" style={styles.addressIcon} />
+          <Text style={styles.addressText}>Lapasan Highway, Cagayan de Oro City</Text>
+        </View>
     <View style={styles.backgroundContainer}>
       <Text style={styles.background}>The University of Science and Technology of Southern Philippines (USTP) is a state university established on August 16, 2016, by virtue of Republic Act 10919 through the amalgamation of the Mindanao University of Science and Technology (MUST) in Cagayan de Oro City, Misamis Oriental and the Misamis Oriental State College of Agriculture and Technology (MOSCAT) in Claveria, Misamis Oriental. It is located in Northern Mindanao, the Gateway to Mindanao, which offers a strategic locational advantage for the institution to train and develop students from all the other regions.</Text>
       <Text style={styles.background}>Adhering to its general mandate to primarily provide advanced education; higher technological, professional, and advanced instruction; and advanced research and extension work, required for global competitiveness, the University envisions becoming a nationally recognized S&T University providing the vital link between education and the economy. As the university fulfills this mandate, it moves from within its immediate context and toward its larger international environment, as the first and only national university of science and technology in the country. It will operate as such that it will have seamless knowledge and collaboration with its stakeholders in the private and public sectors, the labor market, business, and industry.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}> (a) bring the world of work (industry) into the actual higher education and training of students;</Text>
-      <Text style={styles.mission}> (b) offer entrepreneurs the opportunity to maximize their business potentials through a gamut of services from product conceptualization to commercialization;</Text>
-      <Text style={styles.mission}> (c) contribute significantly to the National Development Goals of food security an energy sufficiency through technological solutions. </Text>
+      <Text style={styles.background}>(a) bring the world of work (industry) into the actual higher education and training of students;</Text>
+      <Text style={styles.background}>(b) offer entrepreneurs the opportunity to maximize their business potentials through a gamut of services from product conceptualization to commercialization;</Text>
+      <Text style={styles.background}>(c) contribute significantly to the National Development Goals of food security an energy sufficiency through technological solutions. </Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.vision}>The University of Science and Technology of Southern Philippines (USTP) is a nationally-recognized science and technology university providing the vital link between education and the economy.</Text>
+      <Text style={styles.background}>The University of Science and Technology of Southern Philippines (USTP) is a nationally-recognized science and technology university providing the vital link between education and the economy.</Text>
     </View>
   </>
 )}
@@ -132,7 +137,7 @@ const UstpPage = () => {
           </TouchableOpacity>
         </View>
       )}
-
+<View style={styles.footerContainer}>
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
@@ -142,7 +147,7 @@ const UstpPage = () => {
     Need more information? Click here.
   </Text>
 </TouchableOpacity>
-
+</View>
 
     </ScrollView>
   );
@@ -151,7 +156,7 @@ const UstpPage = () => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -166,7 +171,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'left',
-    marginLeft: 20,
+    // marginLeft: 20,
     width: '100%',
   },
   address: {
@@ -185,6 +190,20 @@ const styles = StyleSheet.create({
   logoSlider: {
     height: 200,
    
+  },
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    marginLeft: 20, 
+  },
+  addressIcon: {
+    marginRight: 10,
+  },
+  addressText: {
+    fontSize: 14,
+    color: 'gray',
+    width: '100%',
   },
   logo: {
     width: '100%',
@@ -210,6 +229,7 @@ const styles = StyleSheet.create({
   background: {
     fontSize: 16,
     textAlign: 'justify',
+    marginBottom: 15,
   },
   panel: {
     flexDirection: 'row',
@@ -290,10 +310,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 10,
   },
+ 
+  footerContainer: { //add container footer
+    flex: 1,
+  },
   floatingButton: {
-    position: 'absolute',
-    bottom: 15,
+    // position: 'absolute',
+    // bottom: 15,
     width: '80%',
+    marginBottom: 20, // add
     alignItems: 'center',
     backgroundColor: '#1D2951',
     padding: 15,
@@ -313,5 +338,4 @@ const styles = StyleSheet.create({
     textDecorationLine: 'none',
   },
 });
-
 export default UstpPage;

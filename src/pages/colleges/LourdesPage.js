@@ -41,10 +41,10 @@ const LourdesPage = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Lourdes College</Text>
+      {/* <Text style={styles.title}>Lourdes College</Text> */}
 
       {/* Address */}
-      <Text style={styles.address}>Capistrano-Mabini Sts., Cagayan de Oro City</Text>
+      {/* <Text style={styles.address}>Capistrano-Mabini Sts., Cagayan de Oro City</Text> */}
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
@@ -69,21 +69,27 @@ const LourdesPage = () => {
       {/* Content */}
       {showAbout && (
   <>
+     {/* Address with icon */}
+     <View style={styles.addressContainer}>
+          <Icon name="map-marker" size={20} color="gray" style={styles.addressIcon} />
+          <Text style={styles.addressText}>Capistrano-Mabini Sts., Cagayan de Oro City</Text>
+        </View>
     <View style={styles.backgroundContainer}>
-      <Text style={styles.background}>A private, Roman Catholic basic and higher education institution managed by the Congregation of the Religious of the Virgin Mary in Cagayan de Oro City, Misamis Oriental, Philippines. It was founded by Archbishop James T.G. Hayes, S.J. in 1928. It is a member of the Philippine Accrediting Association of Schools, Colleges and Universities (PAASCU).[1] The school has two campuses: the Integrated Basic Education Department (IBED) in Barangay Macasandig, and the Higher Education Department (HED) on Capistrano-Hayes Sts.</Text>
+      <Text style={styles.background}>A private, Roman Catholic basic and higher education institution managed by the Congregation of the Religious of the Virgin Mary in Cagayan de Oro City, Misamis Oriental, Philippines. It was founded by Archbishop James T.G. Hayes, S.J. in 1928. It is a member of the Philippine Accrediting Association of Schools, Colleges and Universities (PAASCU).</Text>
+      <Text style={styles.background}>The school has two campuses: the Integrated Basic Education Department (IBED) in Barangay Macasandig, and the Higher Education Department (HED) on Capistrano-Hayes Sts.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}>We commit ourselves to:</Text>
-      <Text style={styles.mission}>1. grow deeper in discernment and interior freedom to be prophets of hope in today's world;</Text>
-      <Text style={styles.mission}>2. continuously form Ignacian Marian leaders who witness to faith, excellence and service in varied socio-cultural settings;</Text>
-      <Text style={styles.mission}>3. constantly pursue innovative programs, approaches, and educational strategies to develop world-class professionals;</Text>
-      <Text style={styles.mission}>4. build up resources and capabilities and create new paradigms to address social harmony toward a dignified life; and</Text>
-      <Text style={styles.mission}>5. expand our educational thrust for the poor.</Text>
+      <Text style={styles.background}>We commit ourselves to:</Text>
+      <Text style={styles.background}>1. grow deeper in discernment and interior freedom to be prophets of hope in today's world;</Text>
+      <Text style={styles.background}>2. continuously form Ignacian Marian leaders who witness to faith, excellence and service in varied socio-cultural settings;</Text>
+      <Text style={styles.background}>3. constantly pursue innovative programs, approaches, and educational strategies to develop world-class professionals;</Text>
+      <Text style={styles.background}>4. build up resources and capabilities and create new paradigms to address social harmony toward a dignified life; and</Text>
+      <Text style={styles.background}>5. expand our educational thrust for the poor.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.mission}>We, the Ignacian Marian community, witness the loving compassion of Jesus. We open new horizons with hope of nurturing learners to be humble and globally competent leaders grounded in solidarity and committed to social renewal for the common good.</Text>
+      <Text style={styles.background}>We, the Ignacian Marian community, witness the loving compassion of Jesus. We open new horizons with hope of nurturing learners to be humble and globally competent leaders grounded in solidarity and committed to social renewal for the common good.</Text>
     </View>
   </>
 )}
@@ -137,6 +143,7 @@ const LourdesPage = () => {
           </TouchableOpacity>
         </View>
       )}
+<View style={styles.footerContainer}>
 
       {/* Website Link */}
       <TouchableOpacity
@@ -147,7 +154,7 @@ const LourdesPage = () => {
     Need more information? Click here.
   </Text>
 </TouchableOpacity>
-
+</View>
 
     </ScrollView>
   );
@@ -156,7 +163,7 @@ const LourdesPage = () => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -171,7 +178,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'left',
-    marginLeft: 20,
+    // marginLeft: 20,
     width: '100%',
   },
   address: {
@@ -196,6 +203,20 @@ const styles = StyleSheet.create({
     height: 200,
     resizeMode: 'cover',
   },
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    marginLeft: 20, 
+  },
+  addressIcon: {
+    marginRight: 10,
+  },
+  addressText: {
+    fontSize: 14,
+    color: 'gray',
+    width: '100%',
+  },
   backgroundContainer: {
     backgroundColor: '#F2F3F4',
     padding: 15,
@@ -215,6 +236,7 @@ const styles = StyleSheet.create({
   background: {
     fontSize: 16,
     textAlign: 'justify',
+    marginBottom: 15,
   },
   panel: {
     flexDirection: 'row',
@@ -295,10 +317,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 10,
   },
+
+  footerContainer: { //add container footer
+    flex: 1,
+  },
   floatingButton: {
-    position: 'absolute',
-    bottom: 15,
+    // position: 'absolute',
+    // bottom: 15,
     width: '80%',
+    marginBottom: 20, // add
     alignItems: 'center',
     backgroundColor: '#1D2951',
     padding: 15,
@@ -318,5 +345,4 @@ const styles = StyleSheet.create({
     textDecorationLine: 'none',
   },
 });
-
 export default LourdesPage;

@@ -8,7 +8,7 @@ import ListOfColleges from './src/pages/ListOfColleges';
 import NavigateCoursePage from './src/pages/NavigateCoursePage';
 import AssessmentPage from './src/pages/AssessmentPage';
 import AcatechPage from './src/pages/colleges/AcatechPage';
-import AmaPage from './src/pages/colleges/AmaPage';
+import AmaCompPage from './src/pages/colleges/AmaCompPage';
 import CagayanPhinmaPage from './src/pages/colleges/CagayanPhinmaPage';
 import CapitolUniversityPage from './src/pages/colleges/CapitolUniversityPage';
 import GoldenHeritagePage from './src/pages/colleges/GoldenHeritagePage';
@@ -37,7 +37,7 @@ const App = () => {
         <Stack.Screen name="NavigateCoursePage" component={NavigateCoursePage} options={{ title: 'Navigate Course' }}/>
         <Stack.Screen name="AssessmentPage" component={AssessmentPage} options={{ title: 'Assessment Quiz' }}/>
         <Stack.Screen name="AcatechPage" component={AcatechPage} options={{ title: 'Acatech Aviation College'}} />
-        <Stack.Screen name="AmaPage" component={AmaPage} options={{ title: 'AMA Computer College' }}/>
+        <Stack.Screen name="AmaCompPage" component={AmaCompPage} options={{ title: 'AMA Computer College' }}/>
         <Stack.Screen name="CagayanPhinmaPage" component={CagayanPhinmaPage} options={{ title: 'Cagayan de Oro College -PHINMA' }}/>
         <Stack.Screen name="CapitolUniversityPage" component={CapitolUniversityPage} options={{ title: 'Capitol University' }}/>
         <Stack.Screen name="GoldenHeritagePage" component={GoldenHeritagePage} options={{ title: 'Golden Heritage Polytechnic College' }}/>

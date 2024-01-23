@@ -41,10 +41,10 @@ const LiceoPage = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Liceo de Cagayan University</Text>
+      {/* <Text style={styles.title}>Liceo de Cagayan University</Text> */}
 
       {/* Address */}
-      <Text style={styles.address}>Rodolfo N. Pelaez Blvd., Cagayan de Oro City</Text>
+      {/* <Text style={styles.address}>Rodolfo N. Pelaez Blvd., Cagayan de Oro City</Text> */}
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
@@ -69,16 +69,21 @@ const LiceoPage = () => {
       {/* Content */}
       {showAbout && (
   <>
+  {/* Address with icon */}
+  <View style={styles.addressContainer}>
+          <Icon name="map-marker" size={20} color="gray" style={styles.addressIcon} />
+          <Text style={styles.addressText}>Rodolfo N. Pelaez Blvd., Cagayan de Oro City</Text>
+        </View>
     <View style={styles.backgroundContainer}>
       <Text style={styles.background}>Founded in 1955 by Atty. Rodolfo N. Pelaez of Cagayan de Oro City and his wife Elsa Pelaez Pelaez of Cebu City, the University was established with the primary mission to impart professional education to the youth of Northern Mindanao especially those who are deserving, but are financially-challenged. Envisioned to make relevant and quality education accessible to the youth, this higher institution of learning was founded as a catalyst in their total human formation anchored on universal moral values and Christian precepts.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}>The University is committed to deliver quality instruction, research, and service learning for global integration.</Text>
+      <Text style={styles.background}>The University is committed to deliver quality instruction, research, and service learning for global integration.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.mission}>A leading Filipino University preparing responsible global leaders, anchored on Total Human Formation, for God, Country, and Humanity.</Text>
+      <Text style={styles.background}>A leading Filipino University preparing responsible global leaders, anchored on Total Human Formation, for God, Country, and Humanity.</Text>
     </View>
   </>
 )}
@@ -136,7 +141,7 @@ const LiceoPage = () => {
           </TouchableOpacity>
         </View>
       )}
-
+<View style={styles.footerContainer}>
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
@@ -146,7 +151,7 @@ const LiceoPage = () => {
     Need more information? Click here.
   </Text>
 </TouchableOpacity>
-
+</View>
 
     </ScrollView>
   );
@@ -155,7 +160,7 @@ const LiceoPage = () => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -170,7 +175,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'left',
-    marginLeft: 20,
+    // marginLeft: 20,
     width: '100%',
   },
   address: {
@@ -194,6 +199,20 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     resizeMode: 'cover',
+  },
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    marginLeft: 20, 
+  },
+  addressIcon: {
+    marginRight: 10,
+  },
+  addressText: {
+    fontSize: 14,
+    color: 'gray',
+    width: '100%',
   },
   backgroundContainer: {
     backgroundColor: '#F2F3F4',
@@ -294,10 +313,14 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 10,
   },
+  footerContainer: { //add container footer
+    flex: 1,
+  },
   floatingButton: {
-    position: 'absolute',
-    bottom: 15,
+    // position: 'absolute',
+    // bottom: 15,
     width: '80%',
+    marginBottom: 20, // add
     alignItems: 'center',
     backgroundColor: '#1D2951',
     padding: 15,

@@ -35,10 +35,10 @@ const SpcPage = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Southern de Oro Philippines College</Text>
+      {/* <Text style={styles.title}>Southern de Oro Philippines College</Text> */}
 
       {/* Address */}
-      <Text style={styles.address}>Don Apolinar Velez Street, Cagayan de Oro City</Text>
+      {/* <Text style={styles.address}>Don Apolinar Velez Street, Cagayan de Oro City</Text> */}
 
       {/* Logo image with automatic swiper */}
       <Swiper style={styles.logoSlider} showsButtons={false} autoplay>
@@ -61,17 +61,22 @@ const SpcPage = () => {
       {/* Content */}
       {showAbout && (
   <>
+            {/* Address with icon */}
+            <View style={styles.addressContainer}>
+          <Icon name="map-marker" size={20} color="gray" style={styles.addressIcon} />
+          <Text style={styles.addressText}>Don Apolinar Velez Street, Cagayan de Oro City</Text>
+        </View>
     <View style={styles.backgroundContainer}>
       <Text style={styles.background}>The school was established upon the proposal of Engr. Apolinar Y.Garcia and Atty. Claudio M. Aguilar during the meeting of the Board of Directors of then Bermuda Shopping Center now known as Benito-Raymunda Realty Corporation in August 1981.</Text>
       <Text style={styles.background}>The idea was to develop the conjugal real properties of the late Don Benito R. Garcia and Dona Raymunda Yabut Garcia. The founders wish to contribute their best efforts toward the welfare and benefit of the youth through education.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>MISSION</Text>  
-      <Text style={styles.mission}>Southern de Oro Philippines College commits itself to develop global professionals through lifelong knowledge, skills and attitudes.</Text>
+      <Text style={styles.background}>Southern de Oro Philippines College commits itself to develop global professionals through lifelong knowledge, skills and attitudes.</Text>
     </View>
     <View style={styles.backgroundContainer}>
     <Text style={styles.title}>VISION</Text>  
-      <Text style={styles.vision}>Center of Excellence in producing global professionals who are deeply rooted in faith, nationalism and humanitarianism.</Text>
+      <Text style={styles.background}>Center of Excellence in producing global professionals who are deeply rooted in faith, nationalism and humanitarianism.</Text>
     </View>
   </>
 )}
@@ -105,7 +110,7 @@ const SpcPage = () => {
           </TouchableOpacity>
         </View>
       )}
-
+<View style={styles.footerContainer}>
       {/* Website Link */}
       <TouchableOpacity
   style={styles.floatingButton}
@@ -115,6 +120,7 @@ const SpcPage = () => {
     Need more information? Click here.
   </Text>
 </TouchableOpacity>
+</View>
 
 
     </ScrollView>
@@ -124,7 +130,7 @@ const SpcPage = () => {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -139,7 +145,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     textAlign: 'left',
-    marginLeft: 20,
+    // marginLeft: 20,
     width: '100%',
   },
   address: {
@@ -158,6 +164,20 @@ const styles = StyleSheet.create({
   logoSlider: {
     height: 200,
    
+  },
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+    marginLeft: 20, 
+  },
+  addressIcon: {
+    marginRight: 10,
+  },
+  addressText: {
+    fontSize: 14,
+    color: 'gray',
+    width: '100%',
   },
   logo: {
     width: '100%',
@@ -183,6 +203,7 @@ const styles = StyleSheet.create({
   background: {
     fontSize: 16,
     textAlign: 'justify',
+    marginBottom: 15,
   },
   panel: {
     flexDirection: 'row',
@@ -263,10 +284,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 10,
   },
+ 
+  footerContainer: { //add container footer
+    flex: 1,
+  },
   floatingButton: {
-    position: 'absolute',
-    bottom: 15,
+    // position: 'absolute',
+    // bottom: 15,
     width: '80%',
+    marginBottom: 20, // add
     alignItems: 'center',
     backgroundColor: '#1D2951',
     padding: 15,
@@ -286,5 +312,4 @@ const styles = StyleSheet.create({
     textDecorationLine: 'none',
   },
 });
-
 export default SpcPage;
