@@ -1,430 +1,398 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 
-const AssessmentPage = ({ navigation }) => {
-  const [answers, setAnswers] = useState({});
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [showResult, setShowResult] = useState(false);
-  const [suggestedCareer, setSuggestedCareer] = useState('');
 
-  const collegeCategories = {
-    'Acatech Aviation College': {
-      'Engineering and Technology': [
-        'Aircraft Maintenance Technology',
-        'Aviation Electronics Technology',
-      ],
-    },
-    'AMA College': {
-      'Business and Management': ['Bachelor of Science in Business Administration'],
-      'Information Technology': [
-        'Bachelor of Science in Computer Science',
-        'Bachelor of Science in Information Systems',
-        'Bachelor of Science in Information Technology',
-      ],
-      'Engineering and Technology': ['Bachelor of Science in Computer Engineering'],
-    },
-    'Capitol University': {
-      'Business and Management': [
-        'Bachelor of Science in Accounting',
-        'Bachelor of Science in Management Accounting',
-      ],
-      'Information Technology': [
-        'Bachelor of Science in Computer Science',
-        'Bachelor of Science in Information Technology',
-      ],
-      'Law and Legal Studies': ['Bachelor of Science in Criminology'],
-      'Education': [
-        'Bachelor of Elementary Education',
-        'Bachelor of Secondary Education',
-      ],
-      'Engineering and Technology': [
-        'Bachelor of Science in Civil Engineering',
-        'Bachelor of Science in Electronics & Communications Engineering',
-        'Bachelor of Science in Marine Engineering',
-        'Bachelor of Science in Mechanical Engineering',
-      ],
-      'Health and Medicine': ['Bachelor of Science in Nursing'],
-      'Maritime': [
-        'Bachelor of Science in Marine Engineering',
-        'Bachelor of Science in Marine Transportation',
-      ],
-    },
-    'Cagayan de Oro College-PHINMA': {
-      'Business and Management': [
-        'Bachelor of Science in Accountancy',
-        'Bachelor of Science in Hospitality Management',
-        'Bachelor of Science in Tourism Management',
-      ],
-      'Education': [
-        'Bachelor of Elementary Education',
-        'Bachelor of Secondary Education',
-        'Bachelor of Science in Early Childhood Education',
-      ],
-      'Law and Legal Studies': ['Bachelor of Science in Criminology'],
-      'Engineering and Technology': [
-        'Bachelor of Science in Computer Engineering',
-        'Bachelor of Science in Civil Engineering',
-        'Bachelor of Science in Electrical Engineering',
-        'Bachelor of Science in Mechanical Engineering',
-      ],
-      'Architecture': ['Bachelor of Science in Architecture'],
-      'Health and Medicine': [
-        'Bachelor of Science in Nursing',
-        'Bachelor of Science in Pharmacy',
-        'Bachelor of Science in Medical Technology',
-        'Bachelor of Science in Psychology',
-      ],
-      'Information Technology': ['Bachelor of Science in Information Technology'],
-    },
-    'Informatics College Cagayan de Oro': {
-      'Information Technology': [
-        'Bachelor of Science in Information Technology',
-        'Bachelor of Science in Computer Science',
-        'Bachelor of Science in Information Systems',
-        'Bachelor of Science in Entrepreneurship',
-      ],
-    },
-    'Golden Heritage Polytechnic College': {
-      'Education': [
-        'Bachelor of Elementary Education',
-        'Bachelor of Secondary Education',
-      ],
-      'Business and Management': [
-        'Bachelor of Science in Business Administration',
-        'Bachelor of Science in Office Administration',
-      ],
-    },
-    'Liceo De Cagayan University': {
-      'Fine Arts': [
-        'Bachelor of Arts in Communication',
-        'Bachelor of Arts in Economics',
-        'Bachelor of Arts in English Literature',
-        'Bachelor of Arts in International Studies',
-        'Bachelor of Arts in Political Science',
-        'Bachelor of Library and Information Science',
-        'Bachelor of Science in Biology',
-        'Bachelor of Science in Psychology',
-      ],
-      'Business and Management': [
-        'Bachelor of Science in Financial Management',
-        'Bachelor of Science in Human Resource Management',
-        'Bachelor of Science in Marketing Management',
-        'Bachelor of Science in Operation Management',
-        'Bachelor of Science in Hospitality Management',
-        'Bachelor of Science in Management Accounting',
-        'Bachelor of Science in Real Estate Management',
-        'Bachelor of Science in Tourism Management',
-      ],
-      'Engineering and Technology': ['Bachelor of Science in Civil Engineering'],
-      'Information Technology': ['Bachelor of Science in Information Technology'],
-      'Health and Medicine': [
-        'Bachelor of Science in Medical Technology/Medical Laboratory Science',
-        'Bachelor of Science in Nursing',
-        'Bachelor of Science in Pharmacy',
-        'Bachelor of Science in Radiologic Technology',
-      ],
-    },
-    'Lourdes College': {
-      'Humanities': [
-        'Bachelor of Arts in English Language',
-        'Bachelor of Music',
-        'Bachelor of Science in Psychology',
-      ],
-      'Business and Management': [
-        'Bachelor of Science in Accounting',
-        'Bachelor of Science in Accounting Information Systems',
-        'Bachelor of Science in Business Administration',
-      ],
-      'Hospitality Management': [
-        'Bachelor of Science in Hospitality Management',
-        'Bachelor of Science in Tourism Management',
-      ],
-      'Information Technology': [
-        'Bachelor of Science in Information Systems',
-        'Bachelor of Science in Information Technology',
-      ],
-      'Health and Medicine': [
-        'Bachelor of Science in Nursing',
-        'Bachelor of Science in Nutrition & Dietetics',
-      ],
-      'Social Sciences': ['Bachelor of Science in Social Work'],
-      'Education': [
-        'Bachelor of Elementary Education',
-        'Bachelor of Secondary Education',
-        'Bachelor of Technology & Livelihood Education',
-      ],
-    },
-    'Oro Bible College': {
-      'Humanities': ['Bachelor of Arts in Theology'],
-    },
-    'Pilgrim Christian College': {
-      'Natural Sciences': [
-        'Bachelor of Science in Environmental Science',
-        'Bachelor of Arts in Communication',
-      ],
-      'Business and Management': [
-        'Bachelor of Science in Accounting',
-        'Bachelor of Science in Accounting Technology',
-        'Bachelor of Science in Entrepreneurship',
-        'Bachelor of Science in Tourism Management',
-      ],
-      'Education': [
-        'Bachelor of Special Education',
-        'Bachelor of Special Needs Education',
-        'Bachelor of Secondary Education major in English',
-        'Bachelor in Physical Education',
-      ],
-    },
-    'Southern de Oro Philippines College': {
-      'Business and Management': [
-        'Bachelor of Arts in Economics',
-        'Bachelor of Science in Business Administration',
-      ],
-      'Education': [
-        'Bachelor of Science in Elementary Education',
-        'Bachelor of Science in Secondary Education',
-      ],
-      'Tourism, Hospitality & Culinary': [
-        'Bachelor of Science in Hotel and Restaurant Management',
-      ],
-      'Maritime': ['Bachelor of Science in Marine Transportation'],
-      'Information Technology': ['Bachelor of Science in Information Technology'],
-      'Humanities': ['Bachelor of Arts in English'],
-      'Social Sciences': ['Bachelor of Science in Criminology'],
-    },
-    'STI College': {
-      'Business and Management': [
-        'Bachelor of Science in Management Accounting',
-        'Bachelor of Science in Information Technology',
-        'Bachelor of Science in Hospitality Management',
-      ],
-    },
-    'University of Science and Technology of Southern Philippines': {
-      'Engineering and Technology': [
-        'Bachelor of Science in Architecture',
-        'Bachelor of Science in Civil Engineering',
-        'Bachelor of Science in Mechanical Engineering',
-        'Bachelor of Science in Computer Engineering',
-        'Bachelor of Science in Geodetic Engineering',
-        'Bachelor of Science in Electrical Engineering',
-        'Bachelor of Science in Electronics Engineering',
-      ],
-      'Information Technology': [
-        'Bachelor of Science in Information Technology',
-        'Bachelor of Science in Technology Communication Management',
-        'Bachelor of Science in Data Science',
-        'Bachelor of Science in Computer Science',
-      ],
-      'Natural Sciences': [
-        'Bachelor of Science in Applied Mathematics',
-        'Bachelor of Science in Applied Physics',
-        'Bachelor of Science in Chemistry',
-        'Bachelor of Science in Environmental Science',
-        'Bachelor of Science in Food Technology',
-      ],
-      'Technology': [
-        'Bachelor of Science in Electronics Technology',
-        'Bachelor of Science in Autotronics',
-        'Bachelor of Science in Energy Systems and Management',
-        'Bachelor of Science in Electro-Mechanical Technology',
-        'Bachelor of Science in Manufacturing Engineering Technology',
-      ],
-    },
-    'Vineyard College': {
-      'Business and Management': [
-        'Bachelor of Science in Business Administration',
-        'Bachelor of Science in Hotel & Restaurant Management',
-      ],
-    },
-    'Xavier University – Ateneo de Cagayan': {
-      'Education': [
-        'Bachelor of Elementary Education',
-        'Bachelor of Secondary Education',
-      ],
-      'Engineering and Technology': [
-        'Bachelor of Science in Agricultural and Biosystems Engineering',
-        'Bachelor of Science in Chemical Engineering',
-        'Bachelor of Science in Civil Engineering',
-        'Bachelor of Science in Electrical Engineering',
-        'Bachelor of Science in Electronics Engineering',
-        'Bachelor of Science in Electronics and Communications Engineering',
-        'Bachelor of Science in Industrial Engineering',
-        'Bachelor of Science in Mechanical Engineering',
-      ],
-      'Business and Management': [
-        'Bachelor of Arts in Economics',
-        'Bachelor of Science in Accountancy',
-        'Bachelor of Science in Real Estate Management',
-      ],
-      'Social Sciences': [
-        'Bachelor of Arts in International Studies',
-        'Bachelor of Arts in Sociology-Anthropology',
-        'Bachelor of Science in Psychology',
-      ],
-      'Natural Sciences': [
-        'Bachelor of Science in Biology',
-        'Bachelor of Science in Chemistry',
-        'Bachelor of Science in Marine Biology',
-        'Bachelor of Science in Mathematics',
-      ],
-      'Humanities': [
-        'Bachelor of Arts in History',
-        'Bachelor of Arts in Literature',
-        'Bachelor of Arts in Philosophy',
-      ],
-      'Agriculture': [
-        'Bachelor of Science in Agribusiness',
-        'Bachelor of Science in Agricultural and Biosystems Engineering',
-        'Bachelor of Science in Agriculture',
-      ],
-      'Languages': ['Bachelor of Arts in English'],
-      'Health and Medicine': ['Bachelor of Science in Nursing'],
-      'Information Technology': [
-        'Bachelor of Science in Computer Science',
-        'Bachelor of Science in Information Systems',
-        'Bachelor of Science in Information Technology',
-      ],
-      'Communications': ['Bachelor of Science in Development Communication'],
-      'Professional and Technical Courses': ['Bachelor of Science in Food Technology'],
-    },
-  };
-  const questions = [
-    'Do you prefer working with numbers or words?',
-    'Are you naturally inclined to solve problems?',
-    'Do you enjoy engaging in creative activities?',
-    'Are you interested in technology and innovation?',
-    'How would you describe your communication style?',
-    'Are you comfortable managing finances?',
-    'How well do you handle stress and pressure?',
-    'Are you more detail-oriented or big-picture-focused?',
-    'Do you prefer hands-on, practical work or theoretical concepts?',
-    'Would you rather work independently or as part of a team?',
-  ];
-  
-  const choices = [
-    ['Numbers', 'Words'],
-    ['Yes, I enjoy problem-solving!', 'Not my favorite activity.'],
-    ['Yes, I enjoy creative activities.', 'Not particularly interested in creative pursuits.'],
-    ['Yes, I am interested in technology.', 'Not particularly interested in technology.'],
-    ['I am a great communicator!', 'I prefer to keep to myself.'],
-    ['I am comfortable managing finances.', 'Finances are not my strong suit.'],
-    ['I thrive under stress and pressure.', 'I prefer a more relaxed environment.'],
-    ['I pay attention to details.', 'I focus more on the big picture.'],
-    ['I love hands-on, practical work.', 'I prefer theoretical and abstract concepts.'],
-    ['I prefer working independently.', 'I enjoy working as part of a team.'],
-  ];
-  const handleAnswerSelection = (question, answer) => {
-    setAnswers((prevAnswers) => ({
-      ...prevAnswers,
-      [question]: answer,
-    }));
-    setCurrentQuestion((prevQuestion) => prevQuestion + 1);
-
-    if (currentQuestion + 1 === questions.length) {
-      // Last question, process answers and show result
-      handleSubmit();
-    }
-  };
-
-  const handleSubmit = () => {
-    // Add logic to process and analyze answers
-    console.log('Submitted Answers:', answers);
-
-    // Example logic to determine suggested career (customize as needed)
-    const suggestedCareerBasedOnAnswers = determineSuggestedCareer();
-
-    // Set the suggested career and show the result
-    setSuggestedCareer(suggestedCareerBasedOnAnswers);
-    setShowResult(true);
-  };
-
-  const determineSuggestedCareer = () => {
-    // Your logic to map answers to suggested careers
-    // This is just a placeholder, modify it based on your criteria
-    // For now, let's return a random career from the selected category
-    const randomCollege = Object.keys(collegeCategories)[Math.floor(Math.random() * Object.keys(collegeCategories).length)];
-    const randomCategory = Object.keys(collegeCategories[randomCollege])[0];
-    const randomCareers = collegeCategories[randomCollege][randomCategory];
-    return randomCareers[Math.floor(Math.random() * randomCareers.length)];
-  };
-
-  const styles = StyleSheet.create({
-    container: {
-      padding: 20,
-    },
-    heading: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginBottom: 20,
-    },
-    questionContainer: {
-      marginBottom: 20,
-    },
-    pageIndicator: {
-      fontSize: 16,
-      marginBottom: 10,
-      color: 'gray',
-    },
-    question: {
-      fontSize: 18,
-      marginBottom: 10,
-    },
-    option: {
-      marginBottom: 10,
-      padding: 10,
-      borderRadius: 8,
-      borderWidth: 0.5,
-      borderColor: 'lightgray',
-      backgroundColor: 'white',
-    },
-    resultContainer: {
-      marginTop: 20,
-      padding: 15,
-      borderRadius: 8,
-      borderWidth: 0.5,
-      borderColor: 'lightgray',
-      backgroundColor: 'lightyellow',
-    },
-    resultText: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      marginBottom: 10,
-    },
-    suggestedCareer: {
-      fontSize: 16,
-    },
-  });
-
+const Introduction = ({ onStartPress }) => {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {/* <Text style={styles.heading}>Career Assessment Quiz</Text> */}
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={true}
+      onRequestClose={() => {}}
+    >
+      <View style={styles.modalContainer}>
+        <Text style={styles.introText}>
+          Welcome to the Career Assessment Quiz! This quiz will help you discover your strengths and interests, guiding you towards suitable career paths.
+        </Text>
+        <TouchableOpacity onPress={onStartPress} style={styles.startButton}>
+          <Text style={styles.startButtonText}>Start Quiz</Text>
+        </TouchableOpacity>
+      </View>
+    </Modal>
+  );
+};
 
-      {/* Display questions dynamically */}
-      {currentQuestion < questions.length && (
-        <View style={styles.questionContainer}>
-          <Text style={styles.pageIndicator}>{currentQuestion + 1} / {questions.length}</Text>
-          <Text style={styles.question}>{questions[currentQuestion]}</Text>
-          {choices[currentQuestion].map((choice, index) => (
+const questions = [
+  {
+    question: 'What is your strongest academic skill?',
+    options: [
+      'Analysis',
+      'Communication',
+      'Critical thinking',
+      'Foreign languages',
+      'Math',
+      'Problem-solving',
+      'Reading comprehension',
+      'Research',
+      'Science',
+      'Writing',
+    ],
+  },
+  {
+    question: 'Describe a real-world problem you\'d love to solve.',
+    options: [
+      'Cultural misunderstandings',
+      'Creative or artistic problems',
+      'Education inequality',
+      'Environmental issues',
+      'Healthcare access',
+      'Political conflicts',
+      'Poverty and hunger',
+      'Social justice issues',
+      'Technological challenges',
+    ],
+  },
+  {
+    question: 'Which subject did you enjoy the most in high school?',
+    options: [
+      'Art',
+      'Business',
+      'English',
+      'History',
+      'Math',
+      'Music',
+      'Physical education',
+      'Science',
+      'Social studies',
+      'Technology',
+      'Foreign languages',
+    ],
+  },
+  {
+    question: 'What are your favorite hobbies and activities?',
+    options: [
+      'Analytical activities',
+      'Creative activities',
+      'Exploring new places',
+      'Playing games',
+      'Playing sports',
+      'Reading',
+      'Socializing',
+      'Spending time outdoors',
+      'Volunteering',
+      'Watching movies',
+      'Writing',
+    ],
+  },
+  {
+    question: 'Imagine your ideal career five years from now. What are you doing?',
+    options: [
+      'Creating and expressing yourself',
+      'Helping and caring for others',
+      'Leading and influencing others',
+      'Solving problems and using logic',
+      'Working with technology and machines',
+    ],
+  },
+  {
+    question: 'Pick two environments you\'d thrive in.',
+    options: [
+      'A bustling, fast-paced city center',
+      'A collaborative team environment',
+      'A creative studio or workshop',
+      'A quiet research lab or library',
+    ],
+  },
+  {
+    question: 'Choose the statement that best describes your approach to learning.',
+    options: [
+      'I learn best by analyzing data and solving problems logically.',
+      'I learn best by doing and experiencing things firsthand.',
+      'I learn best by exploring ideas and concepts creatively.',
+      'I learn best by working with others and collaborating on projects.',
+    ],
+  },
+  {
+    question: 'Rank your comfort level with the following tasks from most comfortable to least comfortable.',
+    options: [
+      'Conducting experiments and collecting data',
+      'Designing visuals and crafting creative solutions',
+      'Leading discussions and presenting ideas',
+      'Performing calculations and solving equations',
+      'Writing and analyzing text',
+    ],
+  },
+];
+
+const categoryScores = {
+  'Engineering and Technology': 0,
+  'Business and Management': 0,
+  'Information Technology': 0,
+  'Fine Arts': 0,
+  'Health and Medicine': 0,
+  'Education': 0,
+  'Law and Legal Studies': 0,
+  'Maritime': 0,
+  'Architecture': 0,
+  'Hospitality Management': 0,
+  'Social Sciences': 0,
+  'Humanities': 0,
+  'Natural Sciences': 0,
+  'Languages': 0,
+  'Agriculture': 0,
+  'Communications': 0,
+  'Professional and Technical Courses': 0,
+};
+
+const AssessmentPage = () => {
+  const [showIntroduction, setShowIntroduction] = useState(true);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [userChoices, setUserChoices] = useState([]);
+
+  const handleOptionPress = (option) => {
+    setUserChoices([...userChoices, option]);
+    setCurrentQuestion(currentQuestion + 1);
+  };
+
+  const scoringCriteria = {
+    'Analysis': { 'Engineering and Technology': 3, 'Business and Management': 2, 'Information Technology': 2 },
+    'Communication': { 'Communications': 3, 'Business and Management': 2 },
+    'Critical thinking': { 'Social Sciences': 3, 'Natural Sciences': 2, 'Humanities': 2 },
+    'Foreign languages': { 'Languages': 3 },
+    'Math': { 'Engineering and Technology': 3, 'Natural Sciences': 2 },
+    'Problem-solving': { 'Engineering and Technology': 3, 'Business and Management': 2 },
+    'Reading comprehension': { 'Humanities': 3, 'Languages': 1 },
+    'Research': { 'Natural Sciences': 3, 'Social Sciences': 2 },
+    'Science': { 'Engineering and Technology': 3, 'Natural Sciences': 2, 'Health and Medicine': 2 },
+    'Writing': { 'Communications': 3, 'Fine Arts': 2 },
+  };
+
+  const calculateScore = () => {
+    userChoices.forEach((choice) => {
+      const scoresForChoice = scoringCriteria[choice];
+      if (scoresForChoice) {
+        for (const category in scoresForChoice) {
+          categoryScores[category] += scoresForChoice[category];
+        }
+      }
+    });
+  };
+  const renderResult = () => {
+    calculateScore();
+  
+    // Create an array of category names
+    const categoryNames = Object.keys(categoryScores);
+  
+    // Sort category names alphabetically
+    categoryNames.sort();
+  
+    return (
+      <View style={styles.resultContainer}>
+        <Text style={styles.resultHeader}>Assessment Completed!</Text>
+        <Text style={styles.explanationText}>
+        Here is a breakdown of your strengths and interests based on your answers:
+      </Text>
+        <View style={styles.resultTable}>
+          {categoryNames.map((category, index) => (
             <TouchableOpacity
-              key={index}
-              style={styles.option}
-              onPress={() => handleAnswerSelection(currentQuestion + 1, choice)}
+              key={category}
+              style={[
+                styles.resultRow,
+                {
+                  backgroundColor: categoryScores[category] === 0 ? 'white' : '#1D2951',
+                  shadowColor: categoryScores[category] === 0 ? 'black' : 'gray',
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 0.5,
+                  shadowRadius: 2,
+                  paddingRight: 10,
+                  paddingLeft: 15,
+                  borderRadius: 8,
+                  elevation: categoryScores[category] === 0 ? 0 : 5, // Add elevation for Android
+                  marginBottom: index < categoryNames.length - 1 ? 10 : 0, // Add margin except for the last one
+                },
+              ]}
+              onPress={() => console.log(`${category}: ${categoryScores[category]}`)} // Add any action you want here
             >
-              <Text>{choice}</Text>
+              <Text style={[
+                styles.resultText,
+                styles.answerText,
+                { color: categoryScores[category] === 0 ? 'black' : 'white'},
+              ]}>
+                {`${category}:`}
+              </Text>
+              <Text style={[
+                styles.resultText,
+                styles.answerText,
+                { color: categoryScores[category] === 0 ? 'black' : 'white' },
+              ]}>
+                {`${categoryScores[category]}`}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
-      )}
+      </View>
+    );
+  };
+    
+  
+  const startQuiz = () => {
+    setShowIntroduction(false);
+  };
 
-      {/* Display result if available */}
-      {showResult && (
-        <View style={styles.resultContainer}>
-          <Text style={styles.resultText}>Based on your answers, we suggest:</Text>
-          <Text style={styles.suggestedCareer}>{suggestedCareer}</Text>
-        </View>
+  return (
+    <ScrollView style={styles.container}>
+      {showIntroduction && (
+        <Introduction onStartPress={startQuiz} />
       )}
+      {!showIntroduction && currentQuestion < questions.length ? (
+        <View style={styles.questionContainer}>
+          <Text style={styles.questionCounter}>{`Question ${currentQuestion + 1} of ${questions.length}`}</Text>
+          <Text style={styles.questionText}>{questions[currentQuestion].question}</Text>
+          {questions[currentQuestion].options.sort().map((option) => (
+            <TouchableOpacity
+              key={option}
+              onPress={() => handleOptionPress(option)}
+              style={styles.optionButton}
+            >
+              <Text style={styles.optionText}>{option}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      ) : (
+        renderResult()
+      )}
+        {/* Footer with space */}
+        <View style={styles.footerContainer}></View>
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    
+  },
+  resultHeader:{
+    textAlign: 'center',
+    padding: 20,
+    fontSize: 20,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'lightgray',  // Set background color to white
+    padding: 20,  // Added padding to create space around the content
+    shadowColor: 'gray',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 5,
+  },
+  introText: {
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 10,
+    elevation: 5,
+    width: '80%',
+    alignItems: 'center', 
+    textAlign: 'justify',
+  },
+  startButton: {
+    backgroundColor: '#1D2951',
+    padding: 10,
+    borderRadius: 5,
+    width: '80%',
+
+  },
+  startButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  questionContainer: {
+    flex: 1,
+  },
+  questionCounter: {
+    fontSize: 16,
+    marginBottom: 10,
+  },
+  questionText: {
+    fontSize: 18,
+    marginBottom: 20,
+  },
+  optionButton: {
+    backgroundColor: '#1D2951',
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  optionText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  resultContainer: {
+    alignItems: 'stretch',
+    backgroundColor: 'white',
+    borderRadius: 8,
+    marginBottom: 20,
+    padding: 20,
+    shadowColor: 'gray',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 5,
+  },
+  explanationText: {
+    textAlign: 'center',
+    fontSize: 15,
+    paddingBottom: 10,
+  },
+  resultText: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  resultRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 5,
+  },
+  noAnswer: {
+    backgroundColor: 'white',
+    shadowColor: 'lightgray',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 5,
+    height: 8,
+    marginBottom: 20,  // Added margin to the noAnswer style
+  },
+  noAnswerText: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  answerWithBackground: {
+    backgroundColor: '#1D2951',
+    borderRadius: 8,
+    padding: 5,
+    height: 8,
+  },
+  answerText: {
+    color: 'white',
+  },
+  footerContainer: {
+    height: 40, 
+  },
+});
 
 export default AssessmentPage;

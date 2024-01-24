@@ -58,7 +58,7 @@ const collegesAndCourses = {
     'Education': [
       'Bachelor of Elementary Education',
       'Bachelor of Secondary Education',
-      'Bachelor of Science in Early Childhood Education',
+      'Bachelor of Early Childhood Education',
     ],
     'Law and Legal Studies': ['Bachelor of Science in Criminology'],
     'Engineering and Technology': [
@@ -172,7 +172,7 @@ const collegesAndCourses = {
       'Bachelor of Special Education',
       'Bachelor of Special Needs Education',
       'Bachelor of Secondary Education major in English',
-      'Bachelor in Physical Education',
+      'Bachelor of Physical Education',
     ],
   },
   'Southern de Oro Philippines College': {
@@ -181,8 +181,8 @@ const collegesAndCourses = {
       'Bachelor of Science in Business Administration',
     ],
     'Education': [
-      'Bachelor of Science in Elementary Education',
-      'Bachelor of Science in Secondary Education',
+      'Bachelor of Elementary Education',
+      'Bachelor of Secondary Education',
     ],
     'Tourism, Hospitality & Culinary': [
       'Bachelor of Science in Hotel and Restaurant Management',
