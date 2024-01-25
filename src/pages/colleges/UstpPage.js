@@ -91,6 +91,11 @@ const UstpPage = () => {
 )}
       {showCourses && (
         <View style={styles.coursesContainer}>
+        <Text style={styles.categoryCourse}>Education</Text>
+        <Text style={styles.categoryItem}>Bachelor in Secondary Education Major in Science</Text>
+        <Text style={styles.categoryItem}>Bachelor of Secondary Education Major in Mathematics</Text>
+        <Text style={styles.categoryItem}>Bachelor in Technology and Livelihood Education</Text>
+        <Text style={styles.categoryItem}>Bachelor in Technical-Vocational Teacher Education</Text>
           <Text style={styles.categoryCourse}>Engineering and Technology</Text>
           <Text style={styles.categoryItem}>Bachelor of Science in Architecture</Text>
           <Text style={styles.categoryItem}>Bachelor of Science in Civil Engineering</Text>

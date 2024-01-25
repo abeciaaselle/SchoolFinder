@@ -108,7 +108,7 @@ const ListOfColleges = ({ navigation }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
   
     const handleSegmentChange = (e) => {
-      e.persist(); // Persist the event
+      // e.persist(); // Persist the event
       const index = e.nativeEvent.selectedSegmentIndex;
       setSelectedIndex(index);
     };
@@ -242,4 +242,3 @@ const styles = StyleSheet.create({
 });
 
 export default ListOfColleges;
-

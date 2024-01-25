@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, ScrollView, TouchableOpacity, Text, Modal, StyleSheet, Dimensions } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Text, Modal, StyleSheet, Dimensions, Platform } from 'react-native';
 import { colors } from '../color/colors';
 import RNPickerSelect from 'react-native-picker-select';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -200,6 +200,12 @@ const collegesAndCourses = {
     ],
   },
   'University of Science and Technology of Southern Philippines': {
+    'Education': [
+      'Bachelor in Secondary Education Major in Science',
+      'Bachelor of Secondary Education Major in Mathematics',
+      'Bachelor in Technology and Livelihood Education',
+      'Bachelor in Technical-Vocational Teacher Education',
+    ],
     'Engineering and Technology': [
       'Bachelor of Science in Architecture',
       'Bachelor of Science in Civil Engineering',
@@ -309,26 +315,39 @@ const NavigateCoursePage = () => {
       a.localeCompare(b, 'en', { sensitivity: 'base' })
     );
   };
-
   const renderCategoryDropdown = () => {
     const categories = extractCategories();
-
+  
     const categoryItems = categories.map((category) => ({
       label: category,
       value: category,
     }));
-
+  
     return (
       <View style={styles.categoryDropdownContainer}>
-        <Text style={styles.dropdownLabel}>Select Category:</Text>
-        <RNPickerSelect
-          items={categoryItems}
-          onValueChange={(value) => handleCategorySelection(value)}
-          style={pickerSelectStyles}
-        />
-      </View>
+      <Text style={styles.dropdownLabel}>Select Category:</Text>
+      <RNPickerSelect
+  items={categoryItems}
+  onValueChange={(value) => handleCategorySelection(value)}
+  style={{
+    inputIOS: pickerSelectStyles.inputIOS,
+    inputAndroid: {
+      ...pickerSelectStyles.inputAndroid,
+      color: 'white',
+    },
+    placeholder: {
+      color: 'white',
+    },
+    iconContainer: pickerSelectStyles.iconContainer,
+  }}
+  placeholder={{ label: 'Select an item..', value: null }}
+  useNativeAndroidPickerStyle={false}
+/>
+
+    </View>
     );
   };
+  
 
   const renderCategoryCourses = () => {
     if (!selectedCategory) return null;
@@ -369,11 +388,12 @@ const NavigateCoursePage = () => {
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
     setSelectedCourse(null);
-
+  
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollToEnd({ animated: true });
     }
   };
+  
 
   const handleCourseSelection = (course) => {
     setSelectedCourse(course);
@@ -405,35 +425,41 @@ const NavigateCoursePage = () => {
   };
 
   return (
-    <ScrollView ref={scrollViewRef} style={styles.container}>
-      {renderCategoryDropdown()}
-      
-      {selectedCategory && renderCategoryCourses()}
+    <ScrollView
+    ref={scrollViewRef}
+    style={[
+      styles.container,
+      Platform.OS === 'ios' ? { paddingTop: 40 } : null,
+    ]}
+  >
+    {renderCategoryDropdown()}
 
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalHeaderText}>
-              Schools Offering {selectedCourse}
-            </Text>
-            {renderSchoolsForCourse()}
-            <TouchableOpacity
-              onPress={() => setModalVisible(false)}
-              style={styles.closeButton}
-            >
-              <Text style={styles.closeButtonText}>Close</Text>
-            </TouchableOpacity>
-          </View>
+    {selectedCategory && renderCategoryCourses()}
+
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={modalVisible}
+      onRequestClose={() => setModalVisible(false)}
+    >
+      <View style={styles.modalContainer}>
+        <View style={styles.modalContent}>
+          <Text style={styles.modalHeaderText}>
+            Schools Offering {selectedCourse}
+          </Text>
+          {renderSchoolsForCourse()}
+          <TouchableOpacity
+            onPress={() => setModalVisible(false)}
+            style={styles.closeButton}
+          >
+            <Text style={styles.closeButtonText}>Close</Text>
+          </TouchableOpacity>
         </View>
-      </Modal>
+      </View>
+    </Modal>
 
-      <View style={styles.footer}></View>
-    </ScrollView>
+    <View style={styles.footer}></View>
+  </ScrollView>
   );
 };
 const styles = StyleSheet.create({
@@ -554,24 +580,29 @@ const pickerSelectStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 5,
-    color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: 30,
     backgroundColor: '#1D2951',
     color: 'white',
   },
   inputAndroid: {
-    fontSize: 16,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 0.5,
-    borderColor: 'gray',
-    borderRadius: 5,
-    color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
-    backgroundColor: '#1D2951',
+    ...Platform.select({
+      android: {
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 5,
+        paddingRight: 30,
+        backgroundColor: '#1D2951',
+  color: Platform.OS === 'android' ? 'black' : 'white',        
+      },
+    }),
+  },
+  iconContainer: {
+    top: 10, // Adjust the position of the dropdown arrow/icon
+    right: 20,
     color: 'white',
   },
 });
-
 export default NavigateCoursePage;
 
